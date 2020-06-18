@@ -1,161 +1,6 @@
-
-
-
-#Set the base directory
-#base_dir="Examples\\head"
-#base_dir="Inport"
-#base_dir="Examples\\XR_wing"
-
-#base_dir="Examples\\XF_seat"
-#base_dir="Examples\\S15"
-#base_dir="Examples\\RAC_skin"
-#base_dir="Examples\\roof"
-#base_dir="Examples\\RT"
-#base_dir="Examples\\F109"
-#base_dir="Examples\\Silvia"
-#base_dir="Examples\\A8"
-#base_dir="Examples\\Blackwood"
-#base_dir="Examples\\S2000"
-#base_dir="Examples\\Corvette"
-#base_dir="Examples\\Sunny"
-#base_dir="Examples\\200X"
-#base_dir="Examples\\EVO"
-#base_dir="Examples\\hC"
-#base_dir="Examples\\FD3S"
-#base_dir="Examples\\capa"
-#base_dir="Examples\\ASCARI"
-#base_dir="Examples\\NSX"
-#base_dir="Examples\\R33"
-#base_dir="Examples\\GOLF"
-#base_dir="Examples\\STRADA"
-#base_dir="Examples\\1979"
-#base_dir="Examples\\cmd"
-#base_dir="Examples\\Freios"
-#base_dir="Examples\\R32"
-#base_dir="Examples\\2000GT"
-#base_dir="Examples\\TUNINGRAC"
-#base_dir="Examples\\XRP"
-#base_dir="Examples\\LAMBO"
-#base_dir="Examples\\SALLEN"
-#base_dir="Examples\\BMW"
-#base_dir="Examples\\calota"
-#base_dir="Examples\\calotaRB"
-#base_dir="Examples\\calotafx"
-#base_dir="Examples\\calotafz"
-#base_dir="Examples\\XRR"
-#base_dir="Examples\\Rodenha"
-#base_dir="Examples\\Rodenha2"
-#base_dir="Examples\\Rodenha3"
-#base_dir="Examples\\Rodenha4"
-#base_dir="Examples\\Subaru"
-#base_dir="Examples\\calotaRA"
-#base_dir="Examples\\calotauf"
-#base_dir="Examples\\calotalx"
-#base_dir="Examples\\RODA2"
-#base_dir="Examples\\S14Stock"
-#base_dir="Examples\\RODAG"
-#base_dir="Examples\\RODAN"
-#base_dir="Examples\\Ford"
-#base_dir="Examples\\Fiat"
-#base_dir="Examples\\MX5"
-#base_dir="Examples\\palio"
-#base_dir="Examples\\charger"
-#base_dir="Examples\\JZ"
-#base_dir="Examples\\Roda_pekena"
-#base_dir="Examples\\opala"
-#base_dir="Examples\\brasilia"
-#base_dir="Examples\\boneco"
-#base_dir="Examples\\Zonda"
-#base_dir="Examples\\ZondaRAC"
-#base_dir="Examples\\Nova_Roda"
-#base_dir="Examples\\Altezza"
-#base_dir="Examples\\cromado"
-#base_dir="Examples\\orbital"
-#base_dir="Examples\\cool"
-#base_dir="Examples\\430"
-#base_dir="Examples\\S13"
-#base_dir="Examples\\G35"
-#base_dir="Examples\\trueno"
-#base_dir="Examples\\XR15"
-#base_dir="Examples\\HachiHoku"
-#base_dir="Examples\\carlton"
-#base_dir="Examples\\iron"
-#base_dir="Examples\\mclaren"
-#base_dir="Examples\\ESCALADE"
-#base_dir="Examples\\ESC"
-#base_dir="Examples\\GIO"
-#base_dir="Examples\\DRIFT"
-#base_dir="Examples\\ENKEI"
-#base_dir="Examples\\WORK"
-#base_dir="Examples\\orbital"
-#base_dir="Examples\\HR"
-#base_dir="Examples\\XRG_W"
-#base_dir="Examples\\XF_TUNING"
-#base_dir="Examples\\DUB"
-#base_dir="Examples\\GIRL"
-#base_dir="Examples\\AE86W"
-#base_dir="Examples\\R10"
-#base_dir="Examples\\rollcage"
-
-#base_dir="Examples\\sombra"
-#base_dir="Examples\\2J"
-#base_dir="Examples\\R10"
-#base_dir="Examples\\1992"
-#base_dir="Examples\\liso"
-#base_dir="Examples\\maverick"
-
-#set the file cor get the command list
-#file_command="cmd.txt"
-
-#file_input="C:\\Users\\damian\\Downloads\\RevBouncer\\lfsdk\\lfsdk\\Inport\\XF.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\FZ5.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\FZ5O.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\Blackwood.wld"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\S2000.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\F08.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\RB4.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XRT.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XRTinterio.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\helmet.sre"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\LXInterior.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XR2.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XF.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\FX.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XFG_wheel.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XRORIGINAL.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\RAC.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XR22.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\RODAZ27.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\GRID.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XRAND.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XFG_wheel.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\RB.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\SKY.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\UF22.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\LX.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\FI.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XR4.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\Super.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\RASuper.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\RA22.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\hmn.hmn"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\ALTEZZA.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\VOLKTE37.CEM"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XF22.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\FZ4.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\XRTinterio2.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\SUPRA.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\FB.vob"
-#file_input="D:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\R8.vob"
-#file_input="..\\veh\\XF.vob"
-
- 
- 
-
- 
-
-
-
+#base_dir="C:\\LFSDK\\CARS"
+#file_command="cars.txt"
+#file_input="C:\\LFSDK\\Inport\\xr.vob"
 
 import blackwood
 import objread
@@ -180,7 +25,7 @@ def get_optimized_vertex(  vlist , tol=0.001):
 def msg(s):
     print s
  
-def process(  ):
+def process( file_command, file_input  ):
   lns= open( file_command , "r" )
 
   o_vt, obj , obj_uv = {},{},{}
@@ -232,6 +77,26 @@ def process(  ):
           mirror=0            
        if li[1].upper() == "FIX":
           msg("MIRROR FIX")             
+          mirror=2
+       if li[1].upper() == "GLASS":
+          msg("MIRROR GLASS")             
+          mirror=3
+       if li[1].upper() == "FIX2":
+          msg("MIRROR FIX2")             
+          mirror=4
+       if li[1].upper() == "FIX3":
+          msg("MIRROR FIX3")             
+          mirror=5		  
+
+    if cmd=="POSITION":
+       if li[1].upper() == "M":
+          msg("MIRROR ON")  
+          mirror=1 
+       if li[1].upper() == "I":
+          msg("DRIVER POSITION")             
+          mirror=0            
+       if li[1].upper() == "0":
+          msg("POSITION 0")             
           mirror=2
 
     if cmd=="MESH":
@@ -365,7 +230,7 @@ def process(  ):
 
 
 
-    if cmd=="ADD_COL": 
+    if cmd=="ADD_LOD1" or cmd=="ADD_SHADOW": 
        vob_name=li[1]
        obj_name=li[2]
        gl= vob.get_obj_names()  
@@ -405,21 +270,60 @@ def process(  ):
                vls.append(  vtab[vo] )               
            #print  vls
               
-           vob.set_face( ffj, vls[0],vls[1],vls[2], oid ,mirror , model=imodel , aid =2  )
+           vob.set_face( ffj, vls[0],vls[1],vls[2], oid ,mirror , model=imodel , aid =1  )
            
  
        vob.scan_normals( oid  )        
-       msg("reclicled %i vertex, new %i vertex"%(recl,fnew )) 
+       msg("reclicled %i vertex, new %i vertex"%(recl,fnew ))
 
-
-
-
+    if cmd=="ADD_LOD2" or cmd=="ADD_COL": 
+       vob_name=li[1]
+       obj_name=li[2]
+       gl= vob.get_obj_names()  
+       if not(vob_name in gl):
+          msg("PART %s NOT FOUND "%(vob_name) )
+          raise NameError 
+       o_fc= obj[ obj_name  ]
+       oid= gl.index( vob_name )
+       recl=0
+       fnew=0
+       msg("ADD in %s  the contents of %s"%(vob_name, obj_name  ))
+       vob.scan_vertex()
+        
+       #print "MIRROR = ", mirror
+       for fi in range(len(o_fc)):
+           ffj = vob.add_face()            
+           vls=[]           #find 3 empty vertex
        
-    if cmd=="REPLACE":
-       pass
+           for vk in [  o_fc[fi][0] ,o_fc[fi][1] ,o_fc[fi][2] ] :
+               vo = vop[vk] +0
+               
+               if vtab[vo]==None   :
+                  for vi in range(vob.nv)  :
+                      if vob.vfree[vi]==0:
+                         vob.vfree[vi]+=1 
+                         vtab[vo] = vi+0
+                         recl+=1
+                         break                        
+               if vtab[vo]==None :
+                  vvk = vob.add_vertex()
+                  vob.vfree[vvk]=1
+                  fnew+=1                   
+                  vtab[vo]=vvk+0          
+                  
+               vob.set_vertex( vtab[vo ], o_vt[vo][0],o_vt[vo][1],o_vt[vo][2] )
+               #print vob.get_vertex( vtab[vo] ), o_vt[vo]
+               vls.append(  vtab[vo] )               
+           #print  vls
+              
+           vob.set_face( ffj, vls[0],vls[1],vls[2], oid ,mirror , model=imodel , aid =2 )
+           
+ 
+       vob.scan_normals( oid  )        
+       msg("reclicled %i vertex, new %i vertex"%(recl,fnew ))
 
 
-    if cmd=="AJUST_TEXTURE_SIZE":
+    if cmd=="ADJUST_TEXTURE_SIZE":
        vob_name= li[1]      
        
      
@@ -523,7 +427,7 @@ def process(  ):
 
 
          
-    if cmd=="SET_TEXTURE_SLOT":
+    if cmd=="SET_TEXTURE_SLOT2":
        vob_name= li[1]
        dds_name= li[2]
        orient=   li[4].upper()
@@ -531,7 +435,7 @@ def process(  ):
        if extend == "SINGLE":
            extend=False
        else:
-            extend= True       
+            extend=True       
        slots = [ int(j) for j in li[5:] ]
        #print li
        gl= vob.get_obj_names()  
@@ -539,7 +443,7 @@ def process(  ):
           msg("PART %s NOT FOUND "%(vob_name) )
           raise NameError
        oid= gl.index( vob_name )
-       dc= {"SIDE":3,"TOP":5,"BACK":2,"FRONT":1,"UNDER":6}
+       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1,"UNDER":6}
        if not(orient in dc.keys()):
           msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
           msg("SIDE receive: %s"%(orient ))
@@ -577,7 +481,110 @@ def process(  ):
        
        #vob.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 )
         
+    if cmd=="SET_TEXTURE_SLOT":
+       vob_name= li[1]
+
+       vob_names =[]
+       gl= vob.get_obj_names()
+
+       sj = 1
+
+       print li
+
+
+       #find extend or single
+
+       valid= False  
+       for sk in range(len(li)):
+           if li[sk].upper() == "EXTEND" or li[sk].upper() == "SINGLE":
+              sj=sk+0
+              valid=True             
+
+       vob_names =   li[1:sj-1 ]        
+
+       msg("Found "+" ".join(vob_names) )        
+       
+       dds_name= li[sj-1]
+       orient=   li[sj+1].upper()
+       extend=   li[sj].upper()
+
+       #print "SJ=", sj
+       #print "DDS_NAME:",dds_name
+       #print li
+       
+       if extend == "SINGLE":
+           extend=False
+       else:
+            extend= True
+            
+       slots = [ int(j) for j in li[sj+2:] ]
+       #print li
+       gl= vob.get_obj_names()  
+       if not(vob_name in gl):
+          msg("PART %s NOT FOUND "%(vob_name) )
+          raise NameError
+
+       if vob_names ==[]:
+          msg("No parts found")
+          raise NameError
+        
  
+       dc= {"SIDE":3,"TOP":5,"BACK":1,"FRONT":1}
+       if not(orient in dc.keys()):
+          msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
+          msg("SIDE receive: %s"%(orient ))
+          
+       x1,x2,y1,y2 = vob.get_axis_limits( vob_names[0] ,[0,1,2,3,4,5,6,7,8,9] ,dc[orient.upper()] )
+       for vn in  vob_names:
+           px1,px2,py1,py2 = vob.get_axis_limits( vn ,[0,1,2,3,4,5,6,7,8,9] ,dc[orient.upper()] )
+           x1= min(x1,px1)
+           y1= min(y1,py1)           
+           x2= max(x2,px2)
+           y2= max(y2,py2)
+           
+       #print "->",x1,x2,y1,y2 
+       if extend and dc[orient.upper()] != 3:
+          x2 = max( abs(x1),(x2) )
+          x1 = -x2          
+       mti,nada,nada2 = vob.get_mat_info()
+       for vn in  vob_names:
+         oid= gl.index( vn)
+         tid = vob.get_obj_texid( vn )
+         tf,ti,mt= vob.get_mat_pos()
+         vi = ti[0] + tid * 24
+         shin= vob.data[vi+16 ]+0  #save
+         
+         mat_name =  vn +"@"
+         if not(mat_name in nada2):
+            vob.add_material(   mat_name)       
+ 
+         vob.set_obj_material(oid,mat_name)
+         #print "AFTER ->",x1,x2,y1,y2 
+         vob.set_material_bb(  mat_name, x1,x2,y1,y2)
+         tid = vob.get_obj_texid( vn )              
+         tf,ti,mt= vob.get_mat_pos()
+         vi = ti[0] + tid * 24
+         #shin= vob.data[vi+16 ]+0
+
+        
+         tex_mirror= True 
+         if dc == 3 : tex_mirror=False
+         u,v,du,dv = blackwood.calc_slot( [ int( ki) for ki in slots  ]   )
+         #mode tex_id  2 by default
+         v= 64 - (v + dv)
+         #x1,x2,y1,y2,du,dv = blackwood.fit_area(x1,x2,y1,y2,du,dv,two_side= tex_mirror , ratio =True )
+       
+         tex_file_id= vob.add_texture_file( dds_name  )       
+         tex_id   = vob.set_tex_id(  vn+"@" , shin  ,  tex_file_id,  u,v,du,dv , orie=0 )        
+         vob.set_material(  mat_name ,  dc[orient.upper()] , vn+"@"   )
+
+         tid = vob.get_obj_texid( vn )
+         tf,ti,mt= vob.get_mat_pos()
+         vi = ti[0] + tid * 24
+         vob.data[vi+16 ]=shin+0
+
+       
+       #vob.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 ) 
 
 
     if cmd=="NEW_OBJECT":
@@ -595,8 +602,12 @@ def process(  ):
         shine= li[2].upper()
         rgb= [int(k) for k in li[3:]  ]
         sh= 0
-        if shine == "SHINE": sh=0
-        if shine == "OPAQUE": sh=1
+        if shine == "SHINE":
+            print "SHINE"
+            sh=0
+        if shine == "OPAQUE":
+            sh=1
+            print "OPAQUE"			
               
         gl= vob.get_obj_names()  
         if not(vob_name in gl):
@@ -615,15 +626,8 @@ def process(  ):
         vi = ti[0] + tid * 24
         vob.data[vi+16 ]= sh+0
               
-              
           
   #msg("WRITE OUT %s"%(file_output))            
   #vob.write(file_output)
 
-  
-import os
- 
 
-os.chdir( base_dir)      
-process()  
-print "DONE"

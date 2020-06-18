@@ -18,7 +18,7 @@ global textures_gl
 textures_gl={}
 
 
-vobname= "C:\\Blackwood.wld"
+vobname= "D:\\LFS\\gen_black\\dist\\Input\\veh\\XR.vob"
 
 
 def uniqueNumber():

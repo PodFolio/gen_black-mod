@@ -1,15 +1,15 @@
 #interface
 
 import compiler
-compiler.compileFile("blackwood.py")
-compiler.compileFile("gen_black.py")
+compiler.compileFile("F:\\LFS\\gen_black\\dist\\blackwood.py")
+compiler.compileFile("F:\\LFS\\gen_black\\dist\\gen_black.py")
 
+base_dir="F:\\LFS\\gen_black\\dist\\Input\\mx5rim\\"
 
+file_command="rims.txt"
 
-file_command="cmd.txt"
-
-
-file_input="C:\\Users\\damian\\Downloads\\RevBouncer\\lfsdk\\lfsdk\\Inport\\XF.vob"
+#file_input="F:\\LFS\\gen_black\\dist\\Input\\xr_base\\XR_base.vob"
+file_input="F:\\LFS\\gen_black\\dist\\Input\\mx5rim\\base_rim_mod.vob"
 
 
 

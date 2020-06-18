@@ -52,7 +52,7 @@ def render_obj(name ):
  
     else:
         print "TEX BUILD"
-        tbase= "\veh"
+        tbase= "D:\\Documents and Settings\\DrRafael\\Desktop\\scripts\\veh"
         
         status,tid= BuildTexture( os.path.join( tbase,  tex_name  +".jpg") )
         if status==False:
@@ -240,7 +240,7 @@ def main():
         rtri =0
         
         s= blackwood.blk_file()
-        name = "\\veh\\Blackwood.wld"
+        name = "veh\\Blackwood.wld"
         s.load(name)
         s.set_mid(40) 
         obj= s.get_obj_names()

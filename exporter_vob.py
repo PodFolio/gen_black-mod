@@ -9,10 +9,10 @@ from  objread import *
 uniqueNumberInternal = 0
 
 mesh_id=1
-vobname= "C:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\F01.vob"
-vob_saida= "C:\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\gen_vob\\F1.vob"
-text_file="C:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\cmd.txt"
-obj_file="C:\\Documents and Settings\\Henrique.CATALDO-FE60ADE\\Desktop\\Conversor\\F109.obj"
+vobname= "F:\\LFS\\gen_black\\dist\\Input\\mirr\\XR_.vob"
+vob_saida= "F:\\LFS\\gen_black\\dist\\Input\\mirr\\XR.vob"
+text_file="F:\\LFS\\gen_black\\dist\\Input\\mirr\\cmd.txt"
+obj_file="F:\\LFS\\gen_black\\dist\\Input\\mirr\\mirror.obj"
 def uniqueNumber():
     global uniqueNumberInternal
     uniqueNumberInternal += 1

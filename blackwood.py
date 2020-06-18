@@ -6,7 +6,8 @@ import os.path
 
 import random
 
-fmask= 127*256 + 255
+#fmask= 126*256 + 255
+fmask= 63*256 + 255 #16383
 
 def to_word(x):
             if x > 65536: print "OVERFLOW \n\n\n" 
@@ -42,6 +43,7 @@ def fixed(sd):
     return  (struct.unpack("i",s)[0])/65536.0
 def bin_vd(d,x,y,z):
             s=  (struct. pack("iii",x*65536.0,y*65536.0,z*65536.0))
+			#s=  (struct. pack("iii",(x/60000)*65536.0,(y/60000)*65536.0,(z/60000)*65536.0)) jak z 3dsa grid 10000
             return [d,0,0,0]+[ ord(i) for i in s]
 
 def read_axyz(d):
@@ -129,7 +131,7 @@ def find_header(data,voff):
            start =False
         if start==False: continue  
             
-        if  mn<1  or nv <3 or nf < 9    :
+        if  mn<1  or nv <2 or nf < 9    : #if  mn<1  or nv <3 or nf < 9    :
   
             
             start=False
@@ -229,11 +231,11 @@ class blk_file:
     f=open(fname,'rb')   
     buf=None
 
-    buf=f.read(512)
+    buf=f.read(4096)
     while buf!="":
          for s in buf:
             self.data.append(struct.unpack("B",s)[0])
-         buf=f.read(512)
+         buf=f.read(4096)
     self.data.append(struct.unpack("B",s)[0])
     self.set_mid(1)
     
@@ -245,7 +247,7 @@ class blk_file:
        while n >0:
          n=n-1
          ss= find_header(self.data,vprox )
-         #print ss
+         print ss
          if ss[0] ==None:
             print "MESH OUT OF RANGE !" 
             raise IndexError
@@ -451,10 +453,10 @@ class blk_file:
                      v1= v1 &fmask
                      v2= v2 &fmask
                      v3= v3 &fmask                     
-                     if v1 < self.nv-1 and   v2 < self.nv-1 and v3 < self.nv-1 :
+                     if v1 < self.nv  and   v2 < self.nv  and v3 < self.nv  :
                         so.append("f %i %i %i \n"%(v1+1,v2+1,v3+1))
        return so  
-                        
+
    
    def get_obj_names(self ):
        lst=[]
@@ -627,6 +629,12 @@ class blk_file:
                 fd[0]=1
             elif mirror ==2: #fix
                 fd[0]=0
+            elif mirror ==3: #glass
+                fd[0]=4
+            elif mirror ==4: #fix2
+                fd[0]=2
+            elif mirror ==5: #fix3
+                fd[0]=8				
 
                 
             if  mirror==2 : 
@@ -634,14 +642,19 @@ class blk_file:
                 self.data[self.off_vi+ 16*vv2] = 0
                 self.data[self.off_vi+ 16*vv3] = 0
                 
- 
+            
 
         
                 
             fd[1]=model
             fd[2]=obj_id
-            fd[4]=aid+0
-            
+            if mirror!=1:
+				fd[3]=1    #Type
+
+            fd[4]=aid+0 #Colision
+            if mirror==3:
+				fd[5]=3    #Smooth
+
             fd[6],fd[7]=to_word(vv1)
             fd[8],fd[9]=to_word(vv2)
             fd[10],fd[11]=to_word(vv3)
@@ -710,14 +723,172 @@ class blk_file:
        
 
        return duv[0],duv[1]
+
+
+   def  get_xyzuf_list( self, obj_name , model  ,kside =0  ):
+
+       xyzuv=[]
        
+       size=1.0
+       dss= size/64.0
+       
+       obj_id  =  self.get_obj_names().index(obj_name )
+
+       
+       mat_name= self.get_obj_material(  obj_name ) 
+       x1, x2,y1,y2= self.get_material_bb( mat_name  )
+ 
+       if x1*x2 < 0 :
+           mirror =True
+       else:
+           mirror= False
+       
+       mat= self.get_material_id( mat_name )       
+       tf,ti,mt= self.get_mat_pos()
+       vi= mt[0]+mat*44       
+       pori= self.data[vi+16 ]
+       
+       tex_id= self.data[vi+36   ]  
+ 
+          
+       vi = ti[0] + tex_id * 24
+        
+        
+       duv=  float(self.data[vi+ 20 ]), float(self.data[vi +21 ])
+       uv = float(self.data[vi +22 ]), float(self.data[vi+ 23 ] )
+       uflag= self.data[vi  +17 ]
+ 
+       
+       tf,ti,mt= self.get_mat_pos()
+       vm= mt[0]+mat*44
+ 
+       
+       def get_uv( x,y , uf=1  ):
+                dx = (x - x1)/float(x2-x1)
+                dy = (y - y1)/float(y2-y1)
+                #print dx,dy
+                
+                ku=dx* duv[0] + uv[0]
+                kv=dy* duv[1] + uv[1]
+                
+                if uf==0:
+                   ku= (dx)* duv[0] + uv[0]
+                   kv= 64-(dy* duv[1] + uv[1])
+
+                if uf==1: 
+                   ku= 64  -  (dy*duv[1] + uv[1])
+                   kv= 64  -  (dx*duv[0] + uv[0])
+
+                   
+                if uf==2:
+                   ku=dx* duv[0] + uv[0]
+                   kv=dy* duv[1] + uv[1]
+                   kv =64- kv
+                   
+                if uf==3:
+                   ku=dx* duv[0] + uv[0]
+                   kv=dy* duv[1] + uv[1]
+                   kv,ku= ku,kv
+                   
+                if uf==4:
+                   ku=(dx)* duv[0] + uv[0]
+                   kv=dy* duv[1] + uv[1]                   
+                   ku = 64-(dx * duv[0]+uv[0])
+                   kv = 64-(dy * duv[1]+uv[1])
+               
+                return ku * dss,kv*dss
+            
+ 
+       sside=1.0
+
+       xflip=1.0
+
+       if kside >0:
+          sside=-1.0 
+       
+       repeat=True
+       while repeat:
+         for j in range( self.nf):
+ 
+            fii= self.off_fc + j*12  
+            if self.data[fii+2] != obj_id  or  self.data[fii+4]>0  or self.data[fii+1]!=model  :
+                 continue
+
+            if self.data[fii]!=1 and sside < 0 :
+               continue
+            
+           
+            if self.data[fii]==16:
+                xflip = -1.0
+            else:
+                xflip=   1.0
+
+ 
+                
+            
+            
+            k1= self.data[fii+6] +  256*self.data[fii+7]
+            k2= self.data[fii+8] +  256*self.data[fii+9]
+            k3= self.data[fii+10] + 256*self.data[fii+11]
+
+
+
+
+            
+            v1= self.get_vertex(k1) 
+            v2= self.get_vertex(k2)
+            v3= self.get_vertex(k3)
+            
+            #if v1[0] & 1 ==0  or v2[0] & 1 ==0 or v3[0] & 1 ==0 :
+            #    continue
+
+            
+            u,v = 1,2
+            if pori == 5:
+               u,v=  1,2
+            elif pori == 3:
+               u,v=  2,3
+            elif pori == 2:               
+               u,v=  1,3
+            elif pori == 1:               
+               u,v=  1,3
+            elif pori == 4:               
+               u,v=  2,3
+
+
+               
+            fv1 ,fv2 ,fv3  = [ [vk[0],sside*xflip*vk[1],vk[2],vk[3]]   for vk in (v1,v2,v3)]
+             
+            is_v= True
+            for vk in (fv1,fv2,fv3):
+              if vk[u] < x1 or vk[u] > x2 or    vk[v] < y1 or  vk[v] > y2  :
+                  #is_v=False
+                  pass
+
+             
+            if  is_v:
+                 for vj in (fv1,fv2,fv3):
+                    
+                   puv = get_uv( vj[u],vj[v],uflag   ) 
+                   xyzuv.append( [ vj[1],vj[2],  vj[3],  puv[0],puv[1] ]  )
+                 
+                 #render the poligon
+                 #draw.line( puv[0] + puv[1], fill=(255,255,255) ) 
+                 #draw.line( puv[1] + puv[2], fill=(255,255,255) )             
+                 #draw.line( puv[2] + puv[0], fill=(255,255,255) )
+     
+         repeat=False
+       return  xyzuv
+       
+
+   
    def render_template(self, obj_id, model ,image_name, size=4096 ,   kside=   0):
        #lets find this file
        
        if os.path.exists(image_name):
           img= Image.open(image_name)
        else:
-          img= Image.new("RGB", [size,size] )
+          img= Image.new("RGBA", [size,size], (255, 255, 255, 0) )
        draw= ImageDraw.Draw(img )   
        obj_name= self.get_obj_names()[obj_id]
 
@@ -861,7 +1032,7 @@ class blk_file:
             is_v= True
             for vk in (fv1,fv2,fv3):
               if vk[u] < x1 or vk[u] > x2 or    vk[v] < y1 or  vk[v] > y2  :
-                  is_v=False
+                  #is_v=False
                   pass
 
              
@@ -869,22 +1040,24 @@ class blk_file:
                  puv= [ get_uv( vj[u],vj[v],uflag   )   for vj in (fv1,fv2,fv3)]
                 
                  #render the poligon
-                 draw.line( puv[0] + puv[1], fill=(255,255,255) ) 
-                 draw.line( puv[1] + puv[2], fill=(255,255,255) )             
-                 draw.line( puv[2] + puv[0], fill=(255,255,255) )
-     
+                 #draw.polygon( puv[0] + puv[1]+ puv[2],  fill=(155,155,155) )
+                 draw.line( puv[0] + puv[1], fill=(0,0,0) ) 
+                 draw.line( puv[1] + puv[2], fill=(0,0,0) )             
+                 draw.line( puv[2] + puv[0], fill=(0,0,0) )
+
+                       
          repeat=False
          #if mirror and sside >0 :
             #sside=-1 
             #repeat=True
             
-       draw.line(  get_uv(x1,y1,uflag )+get_uv(x1,y2,uflag  ) , fill=(250,250,255) ) 
-       draw.line(  get_uv(x1,y2,uflag )+get_uv(x2,y2,uflag  ), fill=(250,250,255) )             
-       draw.line(  get_uv(x2,y2,uflag )+get_uv(x2,y1,uflag  )  , fill=(250,250,255) )
-       draw.line(  get_uv(x2,y1,uflag )+get_uv(x1,y1,uflag  )  , fill=(250,250,255) )
+       draw.line(  get_uv(x1,y1,uflag )+get_uv(x1,y2,uflag  ) , fill=(0,0,0) ) 
+       draw.line(  get_uv(x1,y2,uflag )+get_uv(x2,y2,uflag  ), fill=(0,0,0) )             
+       draw.line(  get_uv(x2,y2,uflag )+get_uv(x2,y1,uflag  )  , fill=(0,0,0) )
+       draw.line(  get_uv(x2,y1,uflag )+get_uv(x1,y1,uflag  )  , fill=(0,0,0) )
        
        del draw
-       img.save(image_name)
+       img.save(image_name, 'PNG')
        del img
 
        
@@ -942,6 +1115,7 @@ class blk_file:
                    out.append( j +0)
        
        return out
+	   
    def face_is_safe(self, fi):
             fii= self.off_fc + fi *12 
             k1= self.data[fii+6] + 256* self.data[fii+7]
@@ -1122,93 +1296,93 @@ class blk_file:
     f.close()   
 
 
-
-if __name__ == '__main__':
-    
-  fl =   "teste.jpg"
-  if os.path.exists(fl ):  os.remove(fl)
-  s= blk_file() 
-  s.load("c:\\tmp\\XR_original.vob")
-
-
-  for me in range(1,9):
-    s.set_mid(me)  
-    ti = s.dump_mesh_as_string()
-    open("XR_%i.obj"%(me),"w").write("".join(ti))
-    
-
-         
-  obj_id = s.get_obj_names().index("M1_side")
-
-  
-  mat_name= s.get_obj_material( "M1_side")         
-  mat= s.get_material_id( mat_name )
-  
-  tf,ti,mt= s.get_mat_pos()
-  vm= mt[0]+mat*44
-  
-  #print  ss(range(24))
-  j=17
-  s.data[vm+17 ] =15
-  #print  ss(s.data[vm:vm+24 ])
-  for i in range( ti[1]):
-    vm= ti[0]+i*24 
-    #print  ss(s.data[vm:vm+24 ])
-
-  oname= "M1_side"
-  mat_name = s.get_obj_material( oname )
-  s.set_tex_id( 'Left',  2, 0, 0,0,32,32,3 )
-  s.set_tex_id( 'Right',  2, 0, 0,0,32,32,3 )
-
-  #fit_area(x1,x2,y1,y2,du,dv, two_side=True, ratio =True )
-  
-  x1,x2,y1,y2=  s.get_axis_limits( "M1_side",[0,1,3],  3 )
-  print x1,x2,y1,y2
-  x1,x2,y1,y2,du,dv = fit_area(x1,x2,y1,y2,48,16, two_side=True, ratio =True )
-  
-  print abs(x2-x1)/abs(y2-y1), " du,dv=", du,float(dv)
-
-  s.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 )
-  s.set_tex_id( 'Right',  2, 0, 0,0,du,dv,2 )
-  
-  obj_ic= s.get_obj_names().index("M1_side")
-  s.render_template( obj_ic, 0 ,"teste.jpg" )
-  s.render_template( obj_ic, 1 ,"teste.jpg" )
-  s.render_template( obj_ic, 3 ,"teste.jpg" )
-
-
- 
-  #s.set_material(  mat_name , False , 3, tex_slots, texture_file )
-  
-  #obj_ic= s.get_obj_names().index("M2_Bonn")
-  
-  #s.render_template( obj_id, 4 ,"teste.jpg" )
-  #s.render_template( obj_ic, 0 ,"teste.jpg" )
-  #s.render_template( obj_ic, 1 ,"teste.jpg" )
-  #s.render_template( obj_ic, 4 ,"teste.jpg"  )  
-  #print s.nv, s.nf,s.get_obj_names()
-  #print s.get_mat_info()
-  s.write("D:\\Documents and Settings\\User\\Desktop\\LFS_S2_ALPHA_Z\\data\\veh\\XR.vob")
- 
-
-
-#s= blk_file()
-#s.load("c:\\tmp\\XR_original.vob")
-#s.set_mid(1)
- 
-
-
-#print s.get_mat_info()
-
- 
-#s.set_material("TOP" , 1,0,[0], "LEXUS")
-#print s.get_mat_info()
-
-#print calc_slot( [2,3] )
-#s.scan_normals(26,  q=0.2 )
-#g= s.get_obj_names()
-#print g
-#fr=  s.get_obj_material( "M1_side" )
-#print s.get_material_bb(  fr )
-#for i in range(len(g)):    print i,g[i]
- 
+##
+##if __name__ == '__main__':
+##    
+##  fl =   "teste.jpg"
+##  if os.path.exists(fl ):  os.remove(fl)
+##  s= blk_file() 
+##  s.load("c:\\tmp\\XR_original.vob")
+##
+##
+##  for me in range(1,9):
+##    s.set_mid(me)  
+##    ti = s.dump_mesh_as_string()
+##    open("XR_%i.obj"%(me),"w").write("".join(ti))
+##    
+##
+##         
+##  obj_id = s.get_obj_names().index("M1_side")
+##
+##  
+##  mat_name= s.get_obj_material( "M1_side")         
+##  mat= s.get_material_id( mat_name )
+##  
+##  tf,ti,mt= s.get_mat_pos()
+##  vm= mt[0]+mat*44
+##  
+##  #print  ss(range(24))
+##  j=17
+##  s.data[vm+17 ] =15
+##  #print  ss(s.data[vm:vm+24 ])
+##  for i in range( ti[1]):
+##    vm= ti[0]+i*24 
+##    #print  ss(s.data[vm:vm+24 ])
+##
+##  oname= "M1_side"
+##  mat_name = s.get_obj_material( oname )
+##  s.set_tex_id( 'Left',  2, 0, 0,0,32,32,3 )
+##  s.set_tex_id( 'Right',  2, 0, 0,0,32,32,3 )
+##
+##  #fit_area(x1,x2,y1,y2,du,dv, two_side=True, ratio =True )
+##  
+##  x1,x2,y1,y2=  s.get_axis_limits( "M1_side",[0,1,3],  3 )
+##  print x1,x2,y1,y2
+##  x1,x2,y1,y2,du,dv = fit_area(x1,x2,y1,y2,48,16, two_side=True, ratio =True )
+##  
+##  print abs(x2-x1)/abs(y2-y1), " du,dv=", du,float(dv)
+##
+##  s.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 )
+##  s.set_tex_id( 'Right',  2, 0, 0,0,du,dv,2 )
+##  
+##  obj_ic= s.get_obj_names().index("M1_side")
+##  s.render_template( obj_ic, 0 ,"teste.jpg" )
+##  s.render_template( obj_ic, 1 ,"teste.jpg" )
+##  s.render_template( obj_ic, 3 ,"teste.jpg" )
+##
+##
+## 
+##  #s.set_material(  mat_name , False , 3, tex_slots, texture_file )
+##  
+##  #obj_ic= s.get_obj_names().index("M2_Bonn")
+##  
+##  #s.render_template( obj_id, 4 ,"teste.jpg" )
+##  #s.render_template( obj_ic, 0 ,"teste.jpg" )
+##  #s.render_template( obj_ic, 1 ,"teste.jpg" )
+##  #s.render_template( obj_ic, 4 ,"teste.jpg"  )  
+##  #print s.nv, s.nf,s.get_obj_names()
+##  #print s.get_mat_info()
+##  s.write("D:\\Documents and Settings\\User\\Desktop\\LFS_S2_ALPHA_Z\\data\\veh\\XR.vob")
+## 
+##
+##
+###s= blk_file()
+###s.load("c:\\tmp\\XR_original.vob")
+###s.set_mid(1)
+## 
+##
+##
+###print s.get_mat_info()
+##
+## 
+###s.set_material("TOP" , 1,0,[0], "LEXUS")
+###print s.get_mat_info()
+##
+###print calc_slot( [2,3] )
+###s.scan_normals(26,  q=0.2 )
+###g= s.get_obj_names()
+###print g
+###fr=  s.get_obj_material( "M1_side" )
+###print s.get_material_bb(  fr )
+###for i in range(len(g)):    print i,g[i]
+## 
