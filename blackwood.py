@@ -1288,6 +1288,39 @@ class blk_file:
        self.data[vi+23 ]=v+0
        
        return tid 
+	   
+   def glue_vertex(self, vtx, fc1, fc2, dist=0.01 ):
+    self.update_geo_num()
+    print "----------------------------\n\n"
+    print vtx[0]
+    v1=[]
+    v2=[]
+    vc={}
+    for f1 in fc1:
+      v1.extend(f1)
+      
+    for f2 in fc2:
+      v2.extend(f2)
+    dg=0
+    for u1 in v1:
+      dmin = dist +0 
+      vc[u1+0]=u1+0
+      for u2 in v2:
+          
+          if  abs( vtx[u1][0] - vtx[u2][0] ) > dmin: continue 
+          if  abs( vtx[u1][1] - vtx[u2][1] ) > dmin : continue 
+          if  abs( vtx[u1][2] - vtx[u2][2] ) > dmin : continue
+          dmin = min( [ abs( vtx[u1][k] - vtx[u2][k] ) for k in (0,1,2)  ])
+          vc[u1+0] = u2+0
+          dg+=1
+          
+    for i in range(len(fc1)):
+       fc1[i][0] = vc[ fc1[i][0] ]
+       fc1[i][1] = vc[ fc1[i][1] ]
+       fc1[i][2] = vc[ fc1[i][2] ]
+    print "weld ",dg 
+    self.update_geo_num()	
+    return fc1
    
    def write(self,fname):
     f= open(fname,"wb")
