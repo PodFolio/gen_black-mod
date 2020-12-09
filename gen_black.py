@@ -102,10 +102,11 @@ def process( file_command, file_input  ):
     if cmd=="GLUE": 
        obj_name=li[1]
        obj2_name=li[2]
+       dist=float(li[3])
        print "clean model",obj_name,obj2_name
        o_fc1= obj[ obj_name] 
        o_fc2= obj[ obj2_name]
-       obj[ obj_name] = vob.glue_vertex( o_vt , o_fc1, o_fc2 , dist=0.02  )
+       obj[ obj_name] = vob.glue_vertex( o_vt , o_fc1, o_fc2 , dist  )
 
     if cmd=="MESH":
        mid=int(li[1])
