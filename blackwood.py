@@ -1,6 +1,6 @@
 #blackwood_mod_tool
 
-import Image, ImageDraw
+from PIL import Image, ImageDraw
 import os
 import os.path
 
@@ -43,7 +43,7 @@ def fixed(sd):
     return  (struct.unpack("i",s)[0])/65536.0
 def bin_vd(d,x,y,z):
             s=  (struct. pack("iii",x*65536.0,y*65536.0,z*65536.0))
-			#s=  (struct. pack("iii",(x/60000)*65536.0,(y/60000)*65536.0,(z/60000)*65536.0)) jak z 3dsa grid 10000
+			#s=  (struct. pack("iii",x,y,z) jak z 3dsa grid 10000
             return [d,0,0,0]+[ ord(i) for i in s]
 
 def read_axyz(d):
@@ -176,7 +176,7 @@ def find_header(data,voff):
         for k in range(nf):
             kf= k*12 + off_fc
             
-            if data[kf+2] > mn  or   data[kf+10]+256*(data[kf+11] & 0x1f  )> nf     :
+            if data[kf+2] > mn  :#or   data[kf+10]+256*(data[kf+11] & 0x1f  )> nf     : #czasami pomaga (chyba)
  
                start=False
                break                
@@ -409,8 +409,8 @@ class blk_file:
         self.off_vi=  self.off_obj + 16*self.mn
         self.off_fc=  self.off_vi + 16* self.nv
 
-        if self.nv >= fmask:
-           raise OverflowError,"Number of vertex is too hight"
+        #if self.nv >= fmask: #dobre do exportu, dac w komentarz
+           #raise OverflowError,"Number of vertex is too hight"
  
         
    def get_obj_material_id( self, obj_name ):
@@ -1278,10 +1278,10 @@ class blk_file:
            
        tf,ti,mt= self.get_mat_pos()
        vi = ti[0] + tid * 24
-       self.data[vi+16 ]= sh
-       self.data[vi+17 ]=orie
-       self.data[vi+18 ]=tex_file_id 
-       
+       self.data[vi+16 ]= sh #skyReflection
+       self.data[vi+17 ]=orie #Rotate
+       self.data[vi+18 ]=tex_file_id   #TextureID
+       #Sp1 self.data[vi+19 ]=sp1
        self.data[vi+20 ]=du+0
        self.data[vi+21 ]=dv+0       
        self.data[vi+22 ]=u+0
