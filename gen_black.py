@@ -86,7 +86,13 @@ def process( file_command, file_input  ):
           mirror=4
        if li[1].upper() == "FIX3":
           msg("MIRROR FIX3")             
-          mirror=5		  
+          mirror=5	
+       if li[1].upper() == "BODYON":
+          msg("MIRROR BODY ON")             
+          mirror=6
+       if li[1].upper() == "BODYFIX":
+          msg("MIRROR BODY FIX")             
+          mirror=7		  
 
     if cmd=="POSITION":
        if li[1].upper() == "M":
@@ -144,27 +150,26 @@ def process( file_command, file_input  ):
     if cmd=="MODEL":
        imodel= int(li[1])
        
-    if cmd=="DELETE_MODEL" or cmd=="CLEAN_MODEL" :        
-       vob_name=li[1] 
-       df=0
-       g= vob.get_obj_names()  
-       if not(vob_name in g):
-          msg("PART %s NOT FOUND "%(vob_name) ) 
-       else:
-          flist= vob.get_face_list(vob_name ,models=[ imodel ]  )
-          flist.sort()           
-          msg("Delete %s"%(vob_name) )
-          for i in range(len(flist)-1, -1,-1):
-              vob.delete_face_model( flist[i],imodel )
-              df+=1
-          msg("%i faces deleted "%(df) )
+    # if cmd=="DELETE_MODEL" or cmd=="CLEAN_MODEL" :        
+       # vob_name=li[1] 
+       # df=0
+       # g= vob.get_obj_names()  
+       # if not(vob_name in g):
+          # msg("PART %s NOT FOUND "%(vob_name) ) 
+       # else:
+          # flist= vob.get_face_list(vob_name ,models=[ imodel ]  )
+          # flist.sort()           
+          # msg("Delete %s"%(vob_name) )
+          # for i in range(len(flist)-1, -1,-1):
+              # vob.delete_face_model( flist[i],imodel )
+              # df+=1
+          # msg("%i faces deleted "%(df) )
 
 
  
     if cmd=="DELETE_COL" or cmd=="CLEAN_COL" :
         
        vob_name=li[1]
-       df=0
        g= vob.get_obj_names()  
        if not(vob_name in g):
           msg("PART %s NOT FOUND "%(vob_name) ) 
@@ -172,6 +177,24 @@ def process( file_command, file_input  ):
           vob.delete_faces_col( vob_name  )
 
 
+    if cmd=="DELETE_SHADOW" or cmd=="CLEAN_SHADOW" :
+        
+       vob_name=li[1]
+       g= vob.get_obj_names()  
+       if not(vob_name in g):
+          msg("PART %s NOT FOUND "%(vob_name) ) 
+       else:
+          vob.delete_faces_shadow( vob_name  )
+
+    if cmd=="DELETE_MODEL" or cmd=="CLEAN_MODEL" :
+        
+       vob_name=li[1]
+       imodel= int(li[2])
+       g= vob.get_obj_names()  
+       if not(vob_name in g):
+          msg("PART %s NOT FOUND "%(vob_name) ) 
+       else:
+          vob.delete_faces_model( vob_name, imodel  )
           
           
     if cmd=="DELETE" or cmd=="CLEAN" :
@@ -419,7 +442,56 @@ def process( file_command, file_input  ):
        print x1,x2, y1,y2 , " ->  ", px1,px2,py1,py2
      
        vob.set_material_bb(  mat_name, px1,px2,py1,py2  )
-      
+
+    if cmd=="CHECK_BB":
+       vob_name= li[1]  	
+       mat_name=  vob.get_obj_material(  vob_name  )  
+       x1,x2, y1,y2= vob.get_material_bb(mat_name)
+       
+       print x1,x2, y1,y2
+	   
+    if cmd=="SET_BB":
+       vob_name= li[1] 
+       px1 = float(li[2])
+       px2 = float(li[3])	
+       py1 = float(li[4])	
+       py2 = float(li[5])		   
+       mat_name=  vob.get_obj_material(  vob_name  )  
+       print x1,x2, y1,y2 , " ->  ", px1,px2,py1,py2
+       vob.set_material_bb(  mat_name, px1,px2,py1,py2  )
+	   
+    if cmd=="SCALE":
+       vob_name= li[1] 
+       scale = float(li[2])		   
+       mat_name=  vob.get_obj_material(  vob_name  )  
+       x1,x2, y1,y2= vob.get_material_bb(mat_name)
+       px1 = x1 / scale
+       px2 = x2 / scale
+       py1 = y1 / scale
+       py2 = y2 / scale
+       print x1,x2, y1,y2 , " ->  ", px1,px2,py1,py2
+       vob.set_material_bb(  mat_name, px1,px2,py1,py2  )
+	   
+    if cmd=="MOVE":
+       vob_name= li[1] 
+       side = float(li[2])
+       updown = float(li[3])		   
+       mat_name=  vob.get_obj_material(  vob_name  )  
+       x1,x2, y1,y2= vob.get_material_bb(mat_name)
+       if side < 0:
+          px1 = x1 + side
+          px2 = x2 + side
+       else:
+          px1 = x1 - side
+          px2 = x2 - side          
+       if updown < 0:
+          py1 = y1 + updown
+          py2 = y2 + updown
+       else:
+          py1 = y1 - updown
+          py2 = y2 - updown
+       print x1,x2, y1,y2 , " ->  ", px1,px2,py1,py2
+       vob.set_material_bb(  mat_name, px1,px2,py1,py2  )      
         
     if cmd=="RENDER_TEMPLATE":
        vob_name= li[1]      

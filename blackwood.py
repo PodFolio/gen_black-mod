@@ -40,10 +40,11 @@ def ss(g,x=3):
 def fixed(sd):
     #print "FIX", sd
     s= chr( sd[0]) + chr(sd[1]) +chr( sd[2]) +chr( sd[3]) 
+    #return  (struct.unpack("i",s)[0]) #grid 10000
     return  (struct.unpack("i",s)[0])/65536.0
 def bin_vd(d,x,y,z):
             s=  (struct. pack("iii",x*65536.0,y*65536.0,z*65536.0))
-			#s=  (struct. pack("iii",x,y,z) jak z 3dsa grid 10000
+			#s=  (struct. pack("iii",x,y,z)) #grid 10000
             return [d,0,0,0]+[ ord(i) for i in s]
 
 def read_axyz(d):
@@ -176,7 +177,7 @@ def find_header(data,voff):
         for k in range(nf):
             kf= k*12 + off_fc
             
-            if data[kf+2] > mn  :#or   data[kf+10]+256*(data[kf+11] & 0x1f  )> nf     : #czasami pomaga (chyba)
+            if data[kf+2] > mn  :#or   data[kf+10]+256*(data[kf+11] & 0x1f  )> nf     : #sometimes help (propably)
  
                start=False
                break                
@@ -231,11 +232,11 @@ class blk_file:
     f=open(fname,'rb')   
     buf=None
 
-    buf=f.read(4096)
+    buf=f.read(256000) #mooooooooooooooooooooooooooooooooooooooore memory
     while buf!="":
          for s in buf:
             self.data.append(struct.unpack("B",s)[0])
-         buf=f.read(4096)
+         buf=f.read(256000) #mooooooooooooooooooooooooooooooooooooooore memory
     self.data.append(struct.unpack("B",s)[0])
     self.set_mid(1)
     
@@ -409,7 +410,7 @@ class blk_file:
         self.off_vi=  self.off_obj + 16*self.mn
         self.off_fc=  self.off_vi + 16* self.nv
 
-        #if self.nv >= fmask: #dobre do exportu, dac w komentarz
+        #if self.nv >= fmask: #good to export to obj
            #raise OverflowError,"Number of vertex is too hight"
  
         
@@ -568,11 +569,37 @@ class blk_file:
         return self.nf-1
     
    def  delete_faces_col( self, vob_name  ) :
+        df=0
         self.update_geo_num() 
         oi= self.get_obj_names().index(vob_name)
         for j in range(self.nf-1,-1,-1):
-            if self.data[ 12*j+self.off_fc + 2] == oi and  self.data[ 12*j+self.off_fc + 4] ==2:
-              self.delete_face( j)   
+            if self.data[ 12*j+self.off_fc + 2] == oi:  #and  self.data[ 12*j+self.off_fc + 4] ==2:
+              self.delete_face( j) 
+              df+=1			  
+        print "faces deleted " ,df 
+        self.update_geo_num() 	
+
+   def  delete_faces_shadow( self, vob_name  ) :
+        df=0
+        self.update_geo_num() 
+        oi= self.get_obj_names().index(vob_name)
+        for j in range(self.nf-1,-1,-1):
+            if self.data[ 12*j+self.off_fc + 2] == oi and  self.data[ 12*j+self.off_fc + 4] ==1:
+              self.delete_face( j) 
+              df+=1			  
+        print "faces deleted " ,df 
+        self.update_geo_num() 	
+
+   def  delete_faces_model( self, vob_name , imodel=0 ) :
+        df=0
+        self.update_geo_num() 
+        oi= self.get_obj_names().index(vob_name)
+        for j in range(self.nf-1,-1,-1):
+            if self.data[ 12*j+self.off_fc + 1] == imodel and  self.data[ 12*j+self.off_fc + 2] == oi and  self.data[ 12*j+self.off_fc + 4] ==0:
+              self.delete_face( j) 
+              df+=1			  
+        print "faces deleted " ,df 
+        self.update_geo_num() 	  
                
         
    def delete_face(self,k ):
@@ -623,18 +650,22 @@ class blk_file:
             
             fd=[0 for j in range(12)]
             fd[0]=1
-            if mirror ==0: #off
+            if mirror ==0: #off (fix in vob.bt)
                 fd[0]=16
             elif mirror ==1: #on
                 fd[0]=1
-            elif mirror ==2: #fix
+            elif mirror ==2: #fix (off in vob.bt)
                 fd[0]=0
             elif mirror ==3: #glass
                 fd[0]=4
-            elif mirror ==4: #fix2
+            elif mirror ==4: #fix2 (ololo_2 in vob.bt)
                 fd[0]=2
-            elif mirror ==5: #fix3
-                fd[0]=8				
+            elif mirror ==5: #fix3 (ololo_8 in vob.bt)
+                fd[0]=8		
+            elif mirror ==6: #bodyon adding smooth to car body
+                fd[0]=1
+            elif mirror ==7: #bodyfix adding smooth to car body		
+                fd[0]=0				
 
                 
             if  mirror==2 : 
@@ -654,6 +685,10 @@ class blk_file:
             fd[4]=aid+0 #Colision
             if mirror==3:
 				fd[5]=3    #Smooth
+            elif mirror==6:
+				fd[5]=7    #Smooth
+            elif mirror==7:
+				fd[5]=7    #Smooth
 
             fd[6],fd[7]=to_word(vv1)
             fd[8],fd[9]=to_word(vv2)
