@@ -77,4 +77,4 @@ added more mirror variants</br>
 `BODYOFF/BODYON/BODYFIX` adding "smooth" for body parts (like in orginal vob)</br>
 
 ### RENDER_TEMPLATE
-now it makes transparent PNG files, just change in commend .jpg to .png
+now it makes transparent PNG files, just change in command .jpg to .png
