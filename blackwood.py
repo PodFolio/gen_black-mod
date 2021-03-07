@@ -590,16 +590,38 @@ class blk_file:
         print "faces deleted " ,df 
         self.update_geo_num() 	
 
-   def  delete_faces_model( self, vob_name , imodel=0 ) :
+   def  delete_faces_model( self, vob_name , model=0 ) :
         df=0
         self.update_geo_num() 
         oi= self.get_obj_names().index(vob_name)
         for j in range(self.nf-1,-1,-1):
-            if self.data[ 12*j+self.off_fc + 1] == imodel and  self.data[ 12*j+self.off_fc + 2] == oi and  self.data[ 12*j+self.off_fc + 4] ==0:
+            if self.data[ 12*j+self.off_fc + 1] == model and  self.data[ 12*j+self.off_fc + 2] == oi and  self.data[ 12*j+self.off_fc + 4] ==0:
               self.delete_face( j) 
               df+=1			  
         print "faces deleted " ,df 
-        self.update_geo_num() 	  
+        self.update_geo_num() 
+
+   def  delete_faces_del( self, vob_name , shadow=0, nomodel=0 ) :
+        df=0
+        self.update_geo_num() 
+        oi= self.get_obj_names().index(vob_name)
+        for j in range(self.nf-1,-1,-1):
+            if self.data[ 12*j+self.off_fc + 1] == nomodel and  self.data[ 12*j+self.off_fc + 2] == oi and  self.data[ 12*j+self.off_fc + 4] ==shadow:
+              self.delete_face( j) 
+              df+=1				  
+        print "faces deleted " ,df 
+        self.update_geo_num() 
+
+   def  delete_faces_norm( self, vob_name, shadow ) :
+        df=0
+        self.update_geo_num() 
+        oi= self.get_obj_names().index(vob_name)
+        for j in range(self.nf-1,-1,-1):
+            if self.data[ 12*j+self.off_fc + 2] == oi and  self.data[ 12*j+self.off_fc + 4] ==shadow:
+              self.delete_face( j) 
+              df+=1				  
+        print "faces deleted " ,df 
+        self.update_geo_num() 		
                
         
    def delete_face(self,k ):
@@ -662,13 +684,15 @@ class blk_file:
                 fd[0]=2
             elif mirror ==5: #fix3 (ololo_8 in vob.bt)
                 fd[0]=8		
-            elif mirror ==6: #bodyon adding smooth to car body
+            elif mirror ==6: #bodyoff
+                fd[0]=16				
+            elif mirror ==7: #bodyon
                 fd[0]=1
-            elif mirror ==7: #bodyfix adding smooth to car body		
+            elif mirror ==8: #bodyfix			
                 fd[0]=0				
 
                 
-            if  mirror==2 : 
+            if  mirror==2 or mirror ==8 : 
                 self.data[self.off_vi+ 16*vv1] = 0
                 self.data[self.off_vi+ 16*vv2] = 0
                 self.data[self.off_vi+ 16*vv3] = 0
@@ -685,10 +709,8 @@ class blk_file:
             fd[4]=aid+0 #Colision
             if mirror==3:
 				fd[5]=3    #Smooth
-            elif mirror==6:
-				fd[5]=7    #Smooth
-            elif mirror==7:
-				fd[5]=7    #Smooth
+            elif mirror==6 or mirror==7 or mirror==8:
+                fd[5]=7    #Smooth
 
             fd[6],fd[7]=to_word(vv1)
             fd[8],fd[9]=to_word(vv2)
@@ -1303,7 +1325,7 @@ class blk_file:
        return  self.data[vi]-1
 
     
-   def set_tex_id(self, tname ,sh ,  tex_file_id, u,v,du,dv , orie=0 ):
+   def set_tex_id(self, sp1, tname ,sh ,  tex_file_id, u,v,du,dv , orie=0 ):
        #tf,ti,mt= self.get_mat_pos()
        tf,ti,mt= self.get_mat_info()
        if  tname in ti:
@@ -1315,8 +1337,8 @@ class blk_file:
        vi = ti[0] + tid * 24
        self.data[vi+16 ]= sh #skyReflection
        self.data[vi+17 ]=orie #Rotate
-       self.data[vi+18 ]=tex_file_id   #TextureID
-       #Sp1 self.data[vi+19 ]=sp1
+       self.data[vi+18 ]=tex_file_id  #TextureID
+       self.data[vi+19 ]=sp1+0 #00 - not transparent, 01 - Fully transparent, 02 - Glass, 03 - light, 04 - dark (not used)
        self.data[vi+20 ]=du+0
        self.data[vi+21 ]=dv+0       
        self.data[vi+22 ]=u+0
