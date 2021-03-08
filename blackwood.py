@@ -703,8 +703,10 @@ class blk_file:
                 
             fd[1]=model
             fd[2]=obj_id
-            if mirror!=1:
-				fd[3]=1    #Type
+            if mirror==1 or mirror==7:
+                fd[3]=0    #Type 
+            else
+                fd[3]=1    #Type
 
             fd[4]=aid+0 #Colision
             if mirror==3:
