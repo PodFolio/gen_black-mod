@@ -9,19 +9,28 @@ PIL (Python Imaging Library) for python 2.5 or 2.7
 
 If you run this script with pypy it can increase compiling speed by 10-50% depends by project size/quality (personaly i can't install PIL on pypy, so render_template not works :/)
 
+It can be used with __[GenBlack Multicore 2020 DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC)__
+
 ## Added commands
 
 ### GLUE ressurected
 welding two objects, to have smooth edges
 
-`GLUE <obj_name> <obj_name2> <distance>`</br>
+```
+GLUE <obj_name> <obj_name2> <distance>
+```
+
 example:</br>
-`glue m4_C1_Frnt m4_M1_side 0.005`
+```
+GLUE m4_C1_Frnt m4_M1_side 0.005
+```
 
 ### SET_TEXTURE_SLOT2 
 for fixing 0.6V ALPHA textures
 
-`SET_TEXTURE_SLOT2 <0-4 transparent type> <part_name> <texture_name_ALP> <texture_appiled_mode> <texture_side> <0-15 slots>`</br>
+```
+SET_TEXTURE_SLOT2 <0-4 transparent type> <part_name> <texture_name_ALP> <texture_appiled_mode> <texture_side> <0-15 slots>
+```
 0-4 transparent type:</br>
 0 - not transpaent</br>
 1 - fully transparent</br>
@@ -30,40 +39,53 @@ for fixing 0.6V ALPHA textures
 4 - tinted glass (look for tinted glass in orginal Car2.psh)</br>
 
 example:</br>
-`set_texture_slot2 2 orb2 X_GTW_ALP single top 0 15`
-
+```
+SET_TEXTURE_SLOT2 2 orb2 X_GTW_ALP single top 0 15
+```
 
 ### DELETE_COL ressurected
 deletes colision</br>
 
-`DELETE_COL <part_name>`
+```
+DELETE_COL <part_name>
+```
 
 ### DELETE_SHADOW
 deletes shadow</br>
 
-`DELETE_SHADOW <part_name>`
+```
+DELETE_SHADOW <part_name>
+```
 
 
 ### DELETE_MODEL ressurected
 deletes parts by specific model</br>
 
-`DELETE_MODEL <part_name>`</br>
+```
+DELETE_MODEL <part_name>
+```
 
 example:</br>
-`model 4`</br>
-`DELETE_MODEL M1_side`
+````
+MODEL 4
+DELETE_MODEL M1_side
+````
 
 ### DEL
 combined DELETE SHADOW/COL/MODEL command</br>
 
-`DEL <part_name> <0-2 colision/shadow> <model>`</br>
+```
+DEL <part_name> <0-2 colision/shadow> <model>
+```
 colision/shadow: </br>
 0 - no colision/shadow</br>
 1 - shadow</br>
 2 - colision</br>
 
 example:</br>
-`DEL M1_side 2 4`
+```
+DEL M1_side 2 4
+```
 
 ## Modified commands
 
