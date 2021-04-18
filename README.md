@@ -1,4 +1,4 @@
-# __Gen_black script made by Rangel, modified by Frito, and now modified by ME__
+# __Modification of Gen_black script__
 
 Original version: https://linhasverticais.wordpress.com </br>
 Frito version: https://static1.downloadgamemods.com/Live%20for%20Speed/Tools/lfsdk.7z
@@ -43,6 +43,83 @@ example:</br>
 SET_TEXTURE_SLOT2 2 orb2 X_GTW_ALP single top 0 15
 ```
 
+### SUBMESHES_COUNT 
+set sub-mesh count for main mesh
+
+```
+SUBMESHES_COUNT <count> 
+```
+it works like `MESH 1` command but with extra step.</br>
+
+example (if you want have total 69 meshes set it to 68. main mesh + 68 sub meshes (childs) = 69):</br>
+```
+SUBMESHES_COUNT 68
+```
+
+### MIRROR_STATE 
+set mesh state. to be compatible with [DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC) it must have number at end of command.</br>
+
+```
+MIRROR_STATE <state> <its dlc?>
+```
+states:</br>
+MIRROR_ONLY</br>
+MIRROR_FIX_POSSIBLE</br>
+
+its dlc?:</br>
+0 - no</br>
+1 - yes</br>
+
+example:</br>
+```
+MESH 1
+MIRROR_STATE MIRROR_ONLY 0
+```
+
+### MESH_TYPE
+set mesh type. to be compatible with [DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC) it must have number at end of command.</br>
+
+```
+MESH_TYPE <type> <its dlc?>
+```
+type:</br>
+MAIN - main mesh</br>
+CALIPER - brake caliper</br>
+WHEEL - steering wheel</br>
+DEFAULT - default mesh</br>
+ALWAYS_VISIBLE - always visible, even in F mode</br>
+MIRROR - central rearview mirror</br>
+
+its dlc?:</br>
+0 - no</br>
+1 - yes</br>
+
+example:</br>
+```
+MESH 5
+MESH_TYPE ALWAYS_VISIBLE 0
+```
+
+### MESH_FIX 
+set mesh fix flag. to be compatible with [DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC) it must have number at end of command.</br>
+
+```
+MESH_FIX <state> <its dlc?>
+```
+states:</br>
+ON -  mirror fix works</br>
+OFF - mirror fix not work</br>
+
+its dlc?:</br>
+0 - no</br>
+1 - yes</br>
+
+example:</br>
+```
+MESH 2
+MESH_FIX OFF 0
+```
+
 ### DELETE_COL ressurected
 deletes colision</br>
 
@@ -56,7 +133,6 @@ deletes shadow</br>
 ```
 DELETE_SHADOW <part_name>
 ```
-
 
 ### DELETE_MODEL ressurected
 deletes parts by specific model</br>
@@ -82,10 +158,64 @@ colision/shadow: </br>
 1 - shadow</br>
 2 - colision</br>
 
+model: </br>
+0-9 - model number</br>
+-1 - no model choosed</br>
+
 example:</br>
 ```
 DEL M1_side 2 4
 ```
+
+### CHECK_BB
+check texture boundaries</br>
+
+```
+CHECK_BB <part_name>
+```
+
+example:</br>
+```
+CHECK_BB M1_side
+```
+
+### SET_BB
+set new boundaries of texture</br>
+
+```
+SET_BB <part_name> <x1> <x2> <y1> <y2>
+```
+
+example:</br>
+```
+SET_BB M1_side -2.5 2.0 0.5 1.2
+```
+
+### SCALE_TEXTURE
+scale texture</br>
+
+```
+SCALE_TEXTURE <part_name> <scale>
+```
+float, 1 = 100%</br>
+
+example:</br>
+```
+SCALE_TEXTURE M1_side 0.5
+```
+
+### MOVE_TEXTURE
+move texture</br>
+
+```
+MOVE_TEXTURE <part_name> <left/right> <up/down>
+```
+
+example:</br>
+```
+MOVE_TEXTURE M1_side 1.5 1.2
+```
+
 
 ## Modified commands
 
@@ -94,9 +224,14 @@ added more mirror variants</br>
 
 `FIX2/FIX3` works like normal FIX </br>
 
-`GLASS` adding "smooth" for glass (like in orginal vob)</br>
+`GLASS` adding "smooth" for glass (like in orginal vob, i don't know if it does anything at all)</br>
 
-`BODYOFF/BODYON/BODYFIX` adding "smooth" for body parts (like in orginal vob)</br>
+`BODYOFF/BODYON/BODYFIX` adding "smooth" for body parts (like in orginal vob, i don't know if it does anything at all)</br>
 
 ### RENDER_TEMPLATE
 now it makes transparent PNG files, just change in command .jpg to .png
+
+example:</br>
+```
+RENDER_TEMPLATE l_find 33_LIGHTS1.png 0
+```
