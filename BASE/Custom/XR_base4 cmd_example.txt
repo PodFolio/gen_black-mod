@@ -1,0 +1,209 @@
+mesh 24
+
+DELETE_ALL
+
+mesh 23
+
+DELETE_ALL
+
+mesh 22
+
+DELETE_ALL
+
+mesh 21
+
+DELETE_ALL
+
+mesh 20
+
+DELETE_ALL
+
+mesh 19
+
+DELETE_ALL
+
+mesh 18
+
+DELETE_ALL
+
+mesh 17
+
+DELETE_ALL
+
+mesh 16
+
+DELETE_ALL
+
+mesh 15
+
+DELETE_ALL
+
+mesh 14
+
+DELETE_ALL
+
+mesh 13
+
+DELETE_ALL
+
+mesh 12
+
+DELETE_ALL
+
+mesh 11
+
+DELETE_ALL
+
+MESH 10
+
+DELETE_ALL
+
+MESH 9
+
+DELETE_ALL
+
+MESH 8
+
+DELETE_ALL
+
+mesh 7
+
+DELETE_ALL
+
+mesh 6
+
+DELETE_ALL
+
+mesh 5
+
+DELETE_ALL
+
+mesh 2
+
+DELETE_ALL
+
+mesh 1
+
+DELETE C1_Gmr_F
+DELETE name_R
+DELETE sheild
+DELETE part1
+DELETE part2
+DELETE l_brk
+DELETE K_plast
+DELETE g_windfY
+DELETE C1_RT_M
+DELETE K_arche
+DELETE sticker
+DELETE C1_GTRU
+DELETE door2_R
+DELETE C1_GTRT
+DELETE K_mirr
+DELETE K_black
+DELETE C1_wing
+DELETE white
+DELETE S_OIL
+DELETE g_head
+DELETE S_TURBO
+DELETE l_fsind
+DELETE S_TEMP
+DELETE carpet_F
+DELETE l_side
+DELETE K_BLAK2
+DELETE M2_Bonn
+DELETE M1_side
+DELETE S_FUEL
+DELETE C1_Frnt
+DELETE C1_back
+DELETE C1_top
+DELETE C1_splr
+DELETE K_EXH_R
+DELETE K_EXH_L
+DELETE C1_splU
+DELETE K_Pl_F
+DELETE K_PL_B
+DELETE C1_Fr
+DELETE K_EXH_B
+DELETE l_rind
+DELETE lock
+DELETE l_find
+DELETE speedo
+DELETE l_rev
+DELETE K_dor_R
+DELETE Kconsol2
+DELETE vent
+DELETE plastic
+DELETE dashx_B
+DELETE K_consl
+DELETE backseat
+DELETE K_crpet
+DELETE ResinT3
+DELETE Revs
+DELETE K_ceilg
+DELETE dialsR
+DELETE dashx_T
+DELETE dashx_R
+DELETE seat_top
+DELETE seat_btm
+DELETE Ceilng_R
+DELETE Ceilng_T
+DELETE bakseatS
+DELETE bakshelf
+DELETE floor4
+DELETE floor_R
+DELETE ventCNTR
+DELETE keyhole
+DELETE Vynil2_R
+DELETE vynil2_T
+DELETE Vynil2_F
+DELETE wndw
+DELETE ashtray
+DELETE Rscreen
+DELETE CrbnBASE
+DELETE dialsL
+DELETE dashXT2
+DELETE GTRdash2
+DELETE GTRvents
+DELETE GTRconsl
+DELETE GTR_dash
+DELETE Carbn3_F
+DELETE carbn3_R
+DELETE latch
+DELETE carbon3T
+DELETE bolts1_R
+DELETE Weld8E_F
+DELETE fibrglsR
+DELETE fibrglsT
+DELETE l_head
+DELETE Weld8D_F
+DELETE cagepila
+DELETE Hole8_F
+DELETE Weld8C_F
+DELETE pilaweld
+DELETE cageNORM
+DELETE weld4_R
+DELETE weld5_R
+DELETE weld6_R
+DELETE weld7
+DELETE Xhaust2
+DELETE cageHOL1
+DELETE DashR_R2
+DELETE Resin_R
+DELETE Resin_T
+DELETE barsSHNY
+DELETE weld8A_F
+DELETE weld8B_F
+DELETE pilrwld2
+DELETE sunscrA
+DELETE Bolt_7
+DELETE C1_Gmr_T
+DELETE metal2
+DELETE under
+DELETE Mirror
+DELETE dashT_T2
+DELETE dash_LTS
+DELETE name
+DELETE plate
+DELETE Lplate
+DELETE plate_R
+DELETE l_tail

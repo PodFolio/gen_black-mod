@@ -87,12 +87,15 @@ def process( file_command, file_input  ):
        if li[1].upper() == "FIX3":
           msg("MIRROR FIX3")             
           mirror=5	
+       if li[1].upper() == "BODYOFF":
+          msg("MIRROR BODY OFF")             
+          mirror=6
        if li[1].upper() == "BODYON":
           msg("MIRROR BODY ON")             
-          mirror=6
+          mirror=7
        if li[1].upper() == "BODYFIX":
           msg("MIRROR BODY FIX")             
-          mirror=7		  
+          mirror=8		  
 
     if cmd=="POSITION":
        if li[1].upper() == "M":
@@ -124,6 +127,57 @@ def process( file_command, file_input  ):
        for k in vob.get_obj_names():
          print k
 
+
+    if cmd=="SUBMESHES_COUNT":
+       sub = int(li[1])
+       msg("sub mesh count %i" % (sub))
+       vob.set_mid(1)
+       vob.set_child(sub)
+
+    if cmd=="MIRROR_STATE":
+       m_s = li[1]
+       if m_s.upper() == "MIRROR_ONLY":
+          msg("MIRROR ONLY")
+          mirror_s=227
+       if m_s.upper() == "MIRROR_FIX_POSSIBLE":
+          msg("MIRROR FIX POSSIBLE")
+          mirror_s=226
+       dlc = int(li[2])
+       vob.set_mirror_state(mirror_s,dlc)
+
+    if cmd=="MESH_TYPE":
+        m_t = li[1]
+        if m_t.upper() == "MAIN":
+           msg("MAIN MESH")
+           mesh_t=0
+        if m_t.upper() == "CALIPER":
+           msg("BRAKE CALIPER")
+           mesh_t=1
+        if m_t.upper() == "WHEEL":
+           msg("STEERING WHEEL")
+           mesh_t=2
+        if m_t.upper() == "DEFAULT":
+           msg("DEFAULT MESH")
+           mesh_t=3
+        if m_t.upper() == "ALWAYS_VISIBLE":
+           msg("ALWAYS VISIBLE, EVEN IN F MODE")
+           mesh_t=5
+        if m_t.upper() == "MIRROR":
+           msg("CENTRAL REARVIEW MIRROR")
+           mesh_t=10
+        dlc = int(li[2])
+        vob.set_mesh_type(mesh_t,dlc)
+
+    if cmd=="MESH_FIX":
+       m_f = li[1]
+       if m_f.upper() == "ON":
+          msg("MIRROR FIX WORKS")
+          mesh_f=1
+       if m_f.upper() == "OFF":
+          msg("MIRROR FIX NOT WORK")
+          mesh_f=2
+       dlc = int(li[2])
+       vob.set_mesh_fix(mesh_f,dlc)
 
     if cmd == "EXIT":
         break 

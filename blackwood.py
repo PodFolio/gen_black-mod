@@ -232,11 +232,11 @@ class blk_file:
     f=open(fname,'rb')   
     buf=None
 
-    buf=f.read(256000) #mooooooooooooooooooooooooooooooooooooooore memory
+    buf=f.read(256000) #idk it this helps?
     while buf!="":
          for s in buf:
             self.data.append(struct.unpack("B",s)[0])
-         buf=f.read(256000) #mooooooooooooooooooooooooooooooooooooooore memory
+         buf=f.read(256000) #idk it this helps?
     self.data.append(struct.unpack("B",s)[0])
     self.set_mid(1)
     
@@ -260,7 +260,42 @@ class blk_file:
        self.vfree={}
        #self.scan_vertex()
            
-
+   def set_child(self, sub):
+       i = self.offset
+       self.data[i+4]=sub
+	   
+   def set_mirror_state(self, mirror_s,dlc):
+       i = self.offset
+       d = dlc + 0
+       if d == 1:
+           self.data[i - 12] = mirror_s
+       else:
+           if self.mid == 1:
+               self.data[i - 20] = mirror_s
+           else:
+               self.data[i - 12] = mirror_s
+			   
+   def set_mesh_type(self, mesh_t,dlc):
+       i = self.offset
+       d = dlc+0
+       if d == 1:
+           self.data[i - 10] = mesh_t
+       else:
+           if self.mid == 1:
+               self.data[i - 18] = mesh_t
+           else:
+               self.data[i - 10] = mesh_t
+			   
+   def set_mesh_fix(self, mesh_f,dlc):
+       i = self.offset
+       d = dlc + 0
+       if d == 1:
+           self.data[i - 9] = mesh_f
+       else:
+           if self.mid == 1:
+               self.data[i - 17] = mesh_f
+           else:
+               self.data[i - 9] = mesh_f
 
    def  scan_normals(self, obj_id , q= 0.404 ):
         import math
@@ -672,17 +707,17 @@ class blk_file:
             
             fd=[0 for j in range(12)]
             fd[0]=1
-            if mirror ==0: #off (fix in vob.bt)
+            if mirror ==0: #off
                 fd[0]=16
             elif mirror ==1: #on
                 fd[0]=1
-            elif mirror ==2: #fix (off in vob.bt)
+            elif mirror ==2: #fix
                 fd[0]=0
             elif mirror ==3: #glass
                 fd[0]=4
-            elif mirror ==4: #fix2 (ololo_2 in vob.bt)
+            elif mirror ==4: #fix2
                 fd[0]=2
-            elif mirror ==5: #fix3 (ololo_8 in vob.bt)
+            elif mirror ==5: #fix3
                 fd[0]=8		
             elif mirror ==6: #bodyoff
                 fd[0]=16				
@@ -705,15 +740,16 @@ class blk_file:
             fd[2]=obj_id
             if mirror==1 or mirror==7:
                 fd[3]=0    #Type 
-            else
+            else:
                 fd[3]=1    #Type
 
-            fd[4]=aid+0 #Colision
+            fd[4]=aid+0 #Colision - 2, Shadow - 1
             if mirror==3:
 				fd[5]=3    #Smooth
             elif mirror==6 or mirror==7 or mirror==8:
                 fd[5]=7    #Smooth
-
+            else:
+                fd[5]=0
             fd[6],fd[7]=to_word(vv1)
             fd[8],fd[9]=to_word(vv2)
             fd[10],fd[11]=to_word(vv3)

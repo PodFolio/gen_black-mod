@@ -24,13 +24,13 @@
             <Keywords name="Folders in comment, open"></Keywords>
             <Keywords name="Folders in comment, middle"></Keywords>
             <Keywords name="Folders in comment, close"></Keywords>
-            <Keywords name="Keywords1">enable diasable glue delete_all clean_all delete_model clean_model delete_col clean_col delete_shadow clean_shadow delete clean add add_lod1 add_shadow add_lod2 add_col adjust_texture_size render_template set_texture_slot set_texture_slot2 set_texture_slot3 new_object  set_color del</Keywords>
+            <Keywords name="Keywords1">enable diasable glue delete_all clean_all delete_model clean_model delete_col clean_col delete_shadow clean_shadow delete clean add add_lod1 add_shadow add_lod2 add_col adjust_texture_size render_template set_texture_slot set_texture_slot2 set_texture_slot3 new_object set_color del set_bb check_bb scale_texture move_texture</Keywords>
             <Keywords name="Keywords2">single extend</Keywords>
             <Keywords name="Keywords3">opaque shine</Keywords>
             <Keywords name="Keywords4">top front side back</Keywords>
             <Keywords name="Keywords5">model</Keywords>
             <Keywords name="Keywords6">mesh</Keywords>
-            <Keywords name="Keywords7">&quot;mirror on&quot; &quot;mirror off&quot; &quot;mirror fix&quot; &quot;mirror fix2&quot; &quot;mirror fix3&quot; &quot;mirror bodyon&quot; &quot;mirror bodyoff&quot; &quot;mirror bodyfix&quot;</Keywords>
+            <Keywords name="Keywords7"> submeshes_count &quot;mirror_state mirror_only&quot; &quot;mirror_state mirror_fix_possible&quot; &quot;mesh_type main&quot; &quot;mesh_type caliper&quot; &quot;mesh_type wheel&quot; &quot;mesh_type default&quot; &quot;mesh_type always_visible&quot; &quot;mesh_type mirror&quot; &quot;mesh_fix on&quot; &quot;mesh_fix off&quot; &quot;mirror on&quot; &quot;mirror off&quot; &quot;mirror fix&quot; &quot;mirror fix2&quot; &quot;mirror fix3&quot; &quot;mirror bodyon&quot; &quot;mirror bodyoff&quot; &quot;mirror bodyfix&quot;</Keywords>
             <Keywords name="Keywords8">load write exit</Keywords>
             <Keywords name="Delimiters"></Keywords>
         </KeywordLists>
