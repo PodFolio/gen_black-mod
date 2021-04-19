@@ -3,7 +3,7 @@
 Original version: https://linhasverticais.wordpress.com </br>
 Frito version: https://static1.downloadgamemods.com/Live%20for%20Speed/Tools/lfsdk.7z
 
-Requires:</br>
+__Requires:__</br>
 Python 2.5 or 2.7</br>
 PIL (Python Imaging Library) for python 2.5 or 2.7
 
@@ -57,7 +57,7 @@ SUBMESHES_COUNT 68
 ```
 
 ### MIRROR_STATE 
-set mesh state. to be compatible with [DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC) it must have number at end of command.</br>
+set mesh state.</br>
 
 ```
 MIRROR_STATE <state> <its dlc?>
@@ -66,18 +66,14 @@ states:</br>
 MIRROR_ONLY</br>
 MIRROR_FIX_POSSIBLE</br>
 
-its dlc?:</br>
-0 - no</br>
-1 - yes</br>
-
 example:</br>
 ```
 MESH 1
-MIRROR_STATE MIRROR_ONLY 0
+MIRROR_STATE MIRROR_ONLY
 ```
 
 ### MESH_TYPE
-set mesh type. to be compatible with [DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC) it must have number at end of command.</br>
+set mesh type.</br>
 
 ```
 MESH_TYPE <type> <its dlc?>
@@ -90,18 +86,14 @@ DEFAULT - default mesh</br>
 ALWAYS_VISIBLE - always visible, even in F mode</br>
 MIRROR - central rearview mirror</br>
 
-its dlc?:</br>
-0 - no</br>
-1 - yes</br>
-
 example:</br>
 ```
 MESH 5
-MESH_TYPE ALWAYS_VISIBLE 0
+MESH_TYPE ALWAYS_VISIBLE
 ```
 
 ### MESH_FIX 
-set mesh fix flag. to be compatible with [DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC) it must have number at end of command.</br>
+set mesh fix flag.</br>
 
 ```
 MESH_FIX <state> <its dlc?>
@@ -110,14 +102,10 @@ states:</br>
 ON -  mirror fix works</br>
 OFF - mirror fix not work</br>
 
-its dlc?:</br>
-0 - no</br>
-1 - yes</br>
-
 example:</br>
 ```
 MESH 2
-MESH_FIX OFF 0
+MESH_FIX OFF
 ```
 
 ### DELETE_COL ressurected
@@ -160,7 +148,7 @@ colision/shadow: </br>
 
 model: </br>
 0-9 - model number</br>
--1 - no model choosed</br>
+-1  - no model choosed</br>
 
 example:</br>
 ```
