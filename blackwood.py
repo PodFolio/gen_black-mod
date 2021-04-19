@@ -256,6 +256,13 @@ class blk_file:
          vnext, vprox = ss
        self.mid=mid+0  
        self.offset= vnext
+	   print "```"*6
+       if mid == 1 and self.data[self.offset - 20] != 0:
+           print "Submeshes Count:", self.data[self.offset+4]
+       self.get_mirror_state(mid)
+       self.get_mesh_type(mid)
+       self.get_mesh_fix(mid)
+       print "```"*6
        self.update_geo_num()
        self.vfree={}
        #self.scan_vertex()
@@ -264,38 +271,86 @@ class blk_file:
        i = self.offset
        self.data[i+4]=sub
 	   
-   def set_mirror_state(self, mirror_s,dlc):
+   def set_mirror_state(self, mirror_s):
        i = self.offset
-       d = dlc + 0
-       if d == 1:
+       if self.mid == 1 and self.data[i - 20] != 0:
+           self.data[i - 20] = mirror_s
+       else:
            self.data[i - 12] = mirror_s
-       else:
-           if self.mid == 1:
-               self.data[i - 20] = mirror_s
-           else:
-               self.data[i - 12] = mirror_s
-			   
-   def set_mesh_type(self, mesh_t,dlc):
+
+   def set_mesh_type(self, mesh_t):
        i = self.offset
-       d = dlc+0
-       if d == 1:
+       if self.mid == 1 and self.data[i - 20] != 0:
+           self.data[i - 18] = mesh_t
+       else:
            self.data[i - 10] = mesh_t
-       else:
-           if self.mid == 1:
-               self.data[i - 18] = mesh_t
-           else:
-               self.data[i - 10] = mesh_t
-			   
-   def set_mesh_fix(self, mesh_f,dlc):
+
+   def set_mesh_fix(self, mesh_f):
        i = self.offset
-       d = dlc + 0
-       if d == 1:
-           self.data[i - 9] = mesh_f
+       if self.mid == 1 and self.data[i - 20] != 0:
+           self.data[i - 17] = mesh_f
        else:
-           if self.mid == 1:
-               self.data[i - 17] = mesh_f
+           self.data[i - 9] = mesh_f
+
+
+   def get_mirror_state(self, n):
+       i = self.offset
+       if n == 1 and self.data[i - 20] != 0:
+           if self.data[i - 20] == 226 or self.data[i - 20] == 195 or self.data[i - 20] == 35 or self.data[i - 20] == 99:
+               print "Mirror State: MIRROR ONLY"
            else:
-               self.data[i - 9] = mesh_f
+               print "Mirror State: MIRROR FIX POSSIBLE"
+       else:
+           if self.data[i - 12] == 226 or self.data[i - 12] == 195 or self.data[i - 12] == 35 or self.data[i - 12] == 99:
+               print "Mirror State: MIRROR ONLY"
+           else:
+               print "Mirror State: MIRROR FIX POSSIBLE"
+
+   def get_mesh_type(self, n):
+       i = self.offset
+       if n == 1 and self.data[i - 20] != 0:
+           if self.data[i - 18] == 0:
+               print "Mesh Type: MAIN MESH"
+           elif self.data[i - 18] == 1:
+               print "Mesh Type: BRAKE CALIPER"
+           elif self.data[i - 18] == 2:
+               print "Mesh Type: STEERING WHEEL"
+           elif self.data[i - 18] == 3:
+               print "Mesh Type: DEFAULT MESH"
+           elif self.data[i - 18] == 5:
+               print "Mesh Type: ALWAYS VISIBLE, EVEN IN F MODE"
+           elif self.data[i - 18] == 10:
+               print "Mesh Type: CENTRAL REARVIEW MIRROR"
+       else:
+           if self.data[i - 10] == 0:
+               print "Mesh Type: MAIN MESH"
+           elif self.data[i - 10] == 1:
+               print "Mesh Type: BRAKE CALIPER"
+           elif self.data[i - 10] == 2:
+               print "Mesh Type: STEERING WHEEL"
+           elif self.data[i - 10] == 3:
+               print "Mesh Type: DEFAULT MESH"
+           elif self.data[i - 10] == 5:
+               print "Mesh Type: ALWAYS VISIBLE, EVEN IN F MODE"
+           elif self.data[i - 10] == 10:
+               print "Mesh Type: CENTRAL REARVIEW MIRROR"
+
+   def get_mesh_fix(self, n):
+       i = self.offset
+       if n == 1 and self.data[i - 20] != 0:
+           if self.data[i - 17] == 1:
+               print "Mesh Fix Flag: MIRROR FIX WORKS"
+           elif self.data[i - 17] == 2:
+               print "Mesh Fix Flag: MIRROR FIX NOT WORK"
+           elif self.data[i - 17] == 3:
+               print "Mesh Fix Flag: MIRROR FIX WORKS"
+       else:
+           if self.data[i - 9] == 1:
+               print "Mesh Fix Flag: MIRROR FIX WORKS"
+           elif self.data[i - 9] == 2:
+               print "Mesh Fix Flag: MIRROR FIX NOT WORK"
+           elif self.data[i - 9] == 3:
+               print "Mesh Fix Flag: MIRROR FIX WORKS"
 
    def  scan_normals(self, obj_id , q= 0.404 ):
         import math

@@ -142,8 +142,7 @@ def process( file_command, file_input  ):
        if m_s.upper() == "MIRROR_FIX_POSSIBLE":
           msg("MIRROR FIX POSSIBLE")
           mirror_s=226
-       dlc = int(li[2])
-       vob.set_mirror_state(mirror_s,dlc)
+       vob.set_mirror_state(mirror_s)
 
     if cmd=="MESH_TYPE":
         m_t = li[1]
@@ -165,8 +164,7 @@ def process( file_command, file_input  ):
         if m_t.upper() == "MIRROR":
            msg("CENTRAL REARVIEW MIRROR")
            mesh_t=10
-        dlc = int(li[2])
-        vob.set_mesh_type(mesh_t,dlc)
+        vob.set_mesh_type(mesh_t)
 
     if cmd=="MESH_FIX":
        m_f = li[1]
@@ -176,8 +174,7 @@ def process( file_command, file_input  ):
        if m_f.upper() == "OFF":
           msg("MIRROR FIX NOT WORK")
           mesh_f=2
-       dlc = int(li[2])
-       vob.set_mesh_fix(mesh_f,dlc)
+       vob.set_mesh_fix(mesh_f)
 
     if cmd == "EXIT":
         break 
