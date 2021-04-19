@@ -60,7 +60,7 @@ SUBMESHES_COUNT 68
 set mesh state.</br>
 
 ```
-MIRROR_STATE <state> <its dlc?>
+MIRROR_STATE <state>
 ```
 states:</br>
 MIRROR_ONLY</br>
@@ -76,7 +76,7 @@ MIRROR_STATE MIRROR_ONLY
 set mesh type.</br>
 
 ```
-MESH_TYPE <type> <its dlc?>
+MESH_TYPE <type>
 ```
 type:</br>
 MAIN - main mesh</br>
@@ -96,7 +96,7 @@ MESH_TYPE ALWAYS_VISIBLE
 set mesh fix flag.</br>
 
 ```
-MESH_FIX <state> <its dlc?>
+MESH_FIX <state>
 ```
 states:</br>
 ON -  mirror fix works</br>
