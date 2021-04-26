@@ -44,7 +44,7 @@ SET_TEXTURE_SLOT2 2 orb2 X_GTW_ALP single top 0 15
 ```
 
 ### SUBMESHES_COUNT 
-set sub-mesh count for main mesh
+set sub-mesh count for main mesh (based on idea by [DemonRed](https://www.facebook.com/demonred8/))</br>
 
 ```
 SUBMESHES_COUNT <count> 
@@ -57,7 +57,7 @@ SUBMESHES_COUNT 68
 ```
 
 ### MIRROR_STATE 
-set mesh state.</br>
+set mesh state (based on idea by [DemonRed](https://www.facebook.com/demonred8/))</br>
 
 ```
 MIRROR_STATE <state>
@@ -73,7 +73,7 @@ MIRROR_STATE MIRROR_ONLY
 ```
 
 ### MESH_TYPE
-set mesh type.</br>
+set mesh type (based on idea by [DemonRed](https://www.facebook.com/demonred8/))</br>
 
 ```
 MESH_TYPE <type>
@@ -93,7 +93,7 @@ MESH_TYPE ALWAYS_VISIBLE
 ```
 
 ### MESH_FIX 
-set mesh fix flag.</br>
+set mesh fix flag (based on idea by [DemonRed](https://www.facebook.com/demonred8/))</br>
 
 ```
 MESH_FIX <state>
