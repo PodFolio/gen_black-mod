@@ -248,7 +248,7 @@ class blk_file:
        while n >0:
          n=n-1
          ss= find_header(self.data,vprox )
-         print ss
+         #print ss
          if ss[0] ==None:
             print "MESH OUT OF RANGE !" 
             raise IndexError
