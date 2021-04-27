@@ -256,7 +256,7 @@ class blk_file:
          vnext, vprox = ss
        self.mid=mid+0  
        self.offset= vnext
-	   print "```"*6
+       print "```"*6
        if mid == 1 and self.data[self.offset - 20] != 0:
            print "Submeshes Count:", self.data[self.offset+4]
        self.get_mirror_state(mid)
