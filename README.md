@@ -239,5 +239,5 @@ _Language > User Defined Language > Define your language... > Import > chose gen
 It works with [Visual Studio 2019 Dark Theme for Notepad++](https://github.com/hellon8/VS2019-Dark-Npp)</br>
 
 example:</br>
-![Gen_Black Notepad++ syntax](https://i.imgur.com/3ffTDOk.png)
+![Gen_Black Notepad++ syntax](https://i.imgur.com/eDhyuZN.png)
 
