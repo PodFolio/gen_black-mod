@@ -1398,6 +1398,17 @@ class blk_file:
        self.data[vi+36 ]  = tex_id  +0
        self.data[vi+40 ]  = tex_id  +0
        print  mat_name, "  -> ", tex_id_name
+
+   def fix_material(self, mat_name ):
+       
+       mat= self.get_material_id( mat_name )
+       
+       tf,ti,mt= self.get_mat_pos()
+       vi=mt[0]+mat*44
+       btf,bti,bmt= self.get_mat_info()
+       
+       self.data[vi+16 ]  = 2
+       self.data[vi+17 ]  = 1
  
        
    def new_tex_id( self,tname  ):

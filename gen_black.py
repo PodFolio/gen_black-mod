@@ -508,6 +508,11 @@ def process( file_command, file_input  ):
      
        vob.set_material_bb(  mat_name, px1,px2,py1,py2  )
 
+    if cmd=="PLATE_FIX":
+       vob_name= li[1] 
+       mat_name=  vob.get_obj_material(  vob_name  )  
+       vob.fix_material(  mat_name  )
+
     if cmd=="CHECK_BB":
        vob_name= li[1]  	
        mat_name=  vob.get_obj_material(  vob_name  )  
