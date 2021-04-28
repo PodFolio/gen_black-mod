@@ -204,6 +204,21 @@ example:</br>
 MOVE_TEXTURE M1_side 1.5 1.2
 ```
 
+### PLATE_FIX
+simple number plate fix</br>
+
+```
+PLATE_FIX <part_name>
+```
+
+example:</br>
+```
+CHECK_BB plate_Front
+#result of check > 0.268096923828 0.50129699707 0.160095214844 0.24609375
+
+SET_BB plate_Front 0.50129699707 0.268096923828 0.160095214844 0.24609375
+PLATE_FIX plate_Front
+```
 
 ## Modified commands
 
