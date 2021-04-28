@@ -223,3 +223,21 @@ example:</br>
 ```
 RENDER_TEMPLATE l_find 33_LIGHTS1.png 0
 ```
+
+
+## Misc
+
+### Base vobs
+in __BASE__ folder:</br>
+- __P__ folder cointains defauld vob bases from pre virtual mirrors ("big wing") update</br>
+- __R__ folder cointains defauld vob bases from post virtual mirrors ("big wing") update, compatible with 0.6V</br>
+- __Custom__ folder cointains custom vob bases</br>
+
+### Gen_Black Notepad++ syntax
+Syntax for Notepad++</br>
+_Language > User Defined Language > Define your language... > Import > chose genblack.xml_</br>
+It works with [Visual Studio 2019 Dark Theme for Notepad++](https://github.com/hellon8/VS2019-Dark-Npp)</br>
+
+example:</br>
+![Gen_Black Notepad++ syntax](https://i.imgur.com/eDhyuZN.png)
+
