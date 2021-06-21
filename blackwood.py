@@ -28,6 +28,18 @@ def toname(d,fill=False):
                s+=chr(k)
             
     return s
+	
+def toname2(d):
+    s=" "
+    for k in d:
+        cs=chr(k)
+        if cs==" ":
+            s+="_"
+        else:    
+            s+=chr(k)
+            
+    return s
+	
 def ss(g,x=3):
     s=""
     for i in g:
@@ -531,7 +543,7 @@ class blk_file:
            
            so.append( "v  %f %f %f \n"%(x,y,z ) )
            
-       for name in  self.get_obj_names():
+       for name in  self.get_obj_names2():
            for model in range(0,9):
                fl= self.get_face_list( name, [model+0] )
                
@@ -558,6 +570,61 @@ class blk_file:
          RGBA=[g/256.0 for g in oz[0:4]]
          lst.append( toname(oz[4:16]) )
        return lst  
+	   
+   def dump_mesh_as_string2( self   ):
+       so=[]
+       self.update_geo_num()
+       
+       for i in range(self.nv):
+           vi= self.off_vi + i *16
+           a,x,y,z= read_axyz(self.data[vi:vi+16])
+           #print a,x,y,z
+           
+           so.append( "v  %f %f %f \n"%(x,y,z ) )
+           
+       for name in  self.get_obj_names2():
+           for model in range(0,9):
+               fl= self.get_face_list2( name, [model+0] )
+               
+               if len(fl) >0:
+                  so.append("g m%i_%s \n"%( model, name) ) 
+                  for fj in fl:
+                     if self.data[ fj*12 + self.off_fc +1 ]!=model :
+                        continue 
+                     v1,v2,v3= self.get_triangle_index( fj )
+                     v1= v1 &fmask
+                     v2= v2 &fmask
+                     v3= v3 &fmask                     
+                     if v1 < self.nv  and   v2 < self.nv  and v3 < self.nv  :
+                        so.append("f %i %i %i \n"%(v1+1,v2+1,v3+1))
+       return so  
+
+   def get_obj_names2(self ):
+       lst=[]
+       for j in range(self.mn):
+         oz= self.data[self.off_obj+j*16:self.off_obj+j*16+16 ]
+         #print oz
+         RGBA=oz[0:4]
+         RGBA=[g/256.0 for g in oz[0:4]]
+         lst.append( toname2(oz[4:16]) )
+       return lst  
+
+   def get_face_list2(self,name, models=[0,1,2,3,4,5,6,7,8,9,10]):
+       self.update_geo_num()
+       oid = self.get_obj_names2( )
+       obj_id  = oid.index( name  )       
+       out=[]
+       sk=0
+       sd=0
+       for j in range( self.nf):
+            fii= self.off_fc + j*12  
+            if (self.data[fii+2] == obj_id ) :
+                sk+=1
+                if (self.data[fii+4] ==0 ):
+                   sd+=1        
+                   out.append( j +0)
+       
+       return out	   
 
          
    def add_vertex(self ):

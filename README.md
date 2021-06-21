@@ -7,7 +7,7 @@ __Requires:__</br>
 Python 2.5 or 2.7</br>
 PIL (Python Imaging Library) for python 2.5 or 2.7
 
-If you run this script with pypy it can increase compiling speed by 10-50% depends by project size/quality (personaly i can't install PIL on pypy, so render_template not works :/)
+If you run this script with [pypy](https://www.pypy.org) it can increase compiling speed by 10-50% depends by project size/quality (personaly i can't install PIL on [pypy](https://www.pypy.org), so render_template not works :/)
 
 It can be used with __[GenBlack Multicore 2020 DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC)__
 
@@ -44,7 +44,7 @@ SET_TEXTURE_SLOT2 2 orb2 X_GTW_ALP single top 0 15
 ```
 
 ### SUBMESHES_COUNT 
-set sub-mesh count for main mesh (based on idea by [DemonRed](https://www.facebook.com/demonred8/))</br>
+set sub-mesh count for main mesh (based on idea by [DemonRed](https://www.facebook.com/demonred8/)), intendent to use with __[GenBlack Multicore 2020 DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC)__</br>
 
 ```
 SUBMESHES_COUNT <count> 
@@ -241,6 +241,9 @@ RENDER_TEMPLATE l_find 33_LIGHTS1.png 0
 
 
 ## Misc
+
+### LFSCarImp locked mod object dump
+use __vob_obj_cimp.py__ to dump LFSCarImp locked vob files ;)</br>
 
 ### Base vobs
 in __BASE__ folder:</br>

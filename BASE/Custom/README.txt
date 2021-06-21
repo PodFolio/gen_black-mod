@@ -1,3 +1,15 @@
+## FX MAX BASE
+P -  pre virtual mirrors ("big wing") update 
+R - post virtual mirrors ("big wing") update, compatible with 0.6V
+meshes in FX_base_fix_max_P.vob and FX_base_fix_max_R.vob and FX_base_off_max_P.vob and FX_base_off_max_R.vob
+- mesh 1    : main
+- mesh 2    : kierownica | steering wheel
+- mesh 3    : zacisk przód | front brake caliper
+- mesh 4    : zacisk tył | rear brake caliper
+- mesh 5    : zapinki xrr | xrr hood clasps front
+- mesh 6    : lusterko | rearview mirror
+- mesh 7-69 : zapinki xrr | xrr hood clasps front
+
 ## XR MAX BASE
 
 meshes in XR_base_fix_max.vob and XR_base_off_max.vob
