@@ -11,6 +11,49 @@ If you run this script with [pypy](https://www.pypy.org) it can increase compili
 
 It can be used with __[GenBlack Multicore 2020 DLC](https://github.com/PodFolio/GenBlack-Multicore-2020-DLC)__
 
+<hr>
+
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#added-commands">Added commands</a>
+      <ul>
+        <li><a href="#glue-ressurected">GLUE</a></li>
+        <li><a href="#set_texture_slot2">SET_TEXTURE_SLOT2</a></li>
+        <li><a href="#submeshes_count">SUBMESHES_COUNT</a></li>
+        <li><a href="#mirror_state">MIRROR_STATE</a></li>
+        <li><a href="#mesh_type">MESH_TYPE</a></li>
+        <li><a href="#mesh_fix">MESH_FIX</a></li>
+        <li><a href="#delete_col-ressurected">DELETE_COL</a></li>
+        <li><a href="#delete_shadow">DELETE_SHADOW</a></li>
+        <li><a href="#delete_model-ressurected">DELETE_MODEL</a></li>
+        <li><a href="#del">DEL</a></li>
+        <li><a href="#check_bb">CHECK_BB</a></li>
+        <li><a href="#set_bb">SET_BB</a></li>
+        <li><a href="#scale_texture">SCALE_TEXTURE</a></li>
+        <li><a href="#move_texture">MOVE_TEXTURE</a></li>
+        <li><a href="#plate_fix">PLATE_FIX</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#modified-commands">Modified commands</a>
+      <ul>
+        <li><a href="#mirror-glassfix2fix3bodyoffbodyonbodyfix">MIRROR GLASS/FIX2/FIX3/BODYOFF/BODYON/BODYFIX</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#misc">Misc</a>
+      <ul>
+        <li><a href="#lfscarimp-locked-mod-object-dump">LFSCarImp locked mod object dump</a></li>
+        <li><a href="#base-vobs">Base vobs</a></li>
+        <li><a href="#gen_black-notepad-syntax">Gen_Black Notepad++ syntax</a></li>
+      </ul>
+    </li>
+    <li><a href="#show-your-support">Show your support</a></li>
+  </ol>
+</details>
+
 ## Added commands
 
 ### GLUE ressurected
@@ -258,4 +301,11 @@ It works with [Visual Studio 2019 Dark Theme for Notepad++](https://github.com/h
 
 example:</br>
 ![Gen_Black Notepad++ syntax](https://i.imgur.com/eDhyuZN.png)
+
+
+## Show your support
+Please ⭐️ this repository if this project helped you!</br>
+<a href="https://paypal.me/podfolio">
+  <img src="https://i.imgur.com/9tOq2a6.png" width="200">
+</a>
 
