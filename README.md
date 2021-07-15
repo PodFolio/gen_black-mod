@@ -273,7 +273,7 @@ added more mirror variants</br>
 
 `GLASS` adding "smooth" for glass (like in orginal vob, i don't know if it does anything at all)</br>
 
-`BODYOFF/BODYON/BODYFIX` adding "smooth" for body parts (like in orginal vob, i don't know if it does anything at all)</br>
+`BODYOFF/BODYON/BODYFIX` adding "smooth" for body parts (like in orginal vob, i don't know if it does anything at all, using only on MESH 1)</br>
 
 ### RENDER_TEMPLATE
 now it makes transparent PNG files, just change in command .jpg to .png
