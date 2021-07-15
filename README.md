@@ -40,6 +40,7 @@ It can be used with __[GenBlack Multicore 2020 DLC](https://github.com/PodFolio/
       <a href="#modified-commands">Modified commands</a>
       <ul>
         <li><a href="#mirror-glassfix2fix3bodyoffbodyonbodyfix">MIRROR GLASS/FIX2/FIX3/BODYOFF/BODYON/BODYFIX</a></li>
+        <li><a href="#render_template">RENDER_TEMPLATE</a></li>
       </ul>
     </li>
     <li>
