@@ -681,7 +681,7 @@ def process( file_command, file_input  ):
           raise NameError
         
  
-       dc= {"SIDE":3,"TOP":5,"BACK":1,"FRONT":1}
+       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1,"UNDER":6}
        if not(orient in dc.keys()):
           msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
           msg("SIDE receive: %s"%(orient ))
@@ -787,7 +787,7 @@ def process( file_command, file_input  ):
           raise NameError
         
  
-       dc= {"SIDE":3,"TOP":5,"BACK":1,"FRONT":1}
+       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1,"UNDER":6}
        if not(orient in dc.keys()):
           msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
           msg("SIDE receive: %s"%(orient ))
