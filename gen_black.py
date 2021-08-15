@@ -583,6 +583,7 @@ def process( file_command, file_input  ):
        dds_name= li[2]
        orient=   li[4].upper()
        extend=   li[3].upper()
+       sp1=0
        if extend == "SINGLE":
            extend=False
        else:
@@ -625,7 +626,7 @@ def process( file_command, file_input  ):
        #x1,x2,y1,y2,du,dv = blackwood.fit_area(x1,x2,y1,y2,du,dv,two_side= tex_mirror , ratio =True )
        
        tex_file_id= vob.add_texture_file( dds_name  )       
-       tex_id   = vob.set_tex_id(  vob_name+"@" , shin  ,  tex_file_id,  u,v,du,dv , orie=0 )        
+       tex_id   = vob.set_tex_id( sp1,  vob_name+"@" , shin  ,  tex_file_id,  u,v,du,dv , orie=0 )        
        vob.set_material(  mat_name ,  dc[orient.upper()] , vob_name+"@"   )
  
 
