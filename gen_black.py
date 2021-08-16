@@ -508,10 +508,6 @@ def process( file_command, file_input  ):
      
        vob.set_material_bb(  mat_name, px1,px2,py1,py2  )
 
-    if cmd=="PLATE_FIX":
-       vob_name= li[1] 
-       mat_name=  vob.get_obj_material(  vob_name  )  
-       vob.fix_material(  mat_name  )
 
     if cmd=="CHECK_BB":
        vob_name= li[1]  	
@@ -578,7 +574,7 @@ def process( file_command, file_input  ):
 
 
          
-    if cmd=="SET_TEXTURE_SLOT3":
+    if cmd=="SET_TEXTURE_SLOT1":
        vob_name= li[1]
        dds_name= li[2]
        orient=   li[4].upper()
@@ -595,7 +591,7 @@ def process( file_command, file_input  ):
           msg("PART %s NOT FOUND "%(vob_name) )
           raise NameError
        oid= gl.index( vob_name )
-       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1,"UNDER":6}
+       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1}
        if not(orient in dc.keys()):
           msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
           msg("SIDE receive: %s"%(orient ))
@@ -611,6 +607,73 @@ def process( file_command, file_input  ):
  
        vob.set_obj_material(oid,mat_name)
        #print "AFTER ->",x1,x2,y1,y2 
+       if dc[orient.upper()] == 1:
+          px1=x2
+          px2=x1
+       else:
+          px1=x1
+          px2=x2 
+       vob.set_material_bb(  mat_name, x1,x2,y1,y2)
+       tid = vob.get_obj_texid( vob_name )              
+       tf,ti,mt= vob.get_mat_pos()
+       vi = ti[0] + tid * 24
+       shin= vob.data[vi+16 ]+0
+
+        
+       tex_mirror= True 
+       if dc == 3 : tex_mirror=False
+       u,v,du,dv = blackwood.calc_slot( [ int( ki) for ki in slots  ]   )
+       #mode tex_id  2 by default
+       v= 64 - (v + dv)
+       #x1,x2,y1,y2,du,dv = blackwood.fit_area(x1,x2,y1,y2,du,dv,two_side= tex_mirror , ratio =True )
+       
+       tex_file_id= vob.add_texture_file( dds_name  )       
+       tex_id   = vob.set_tex_id( sp1,  vob_name+"@" , shin  ,  tex_file_id,  u,v,du,dv , orie=0 )        
+       vob.set_material(  mat_name ,  dc[orient.upper()] , vob_name+"@"   )
+ 
+
+       
+       #vob.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 )
+	   
+    if cmd=="SET_TEXTURE_SLOT2":
+       sp1= int(li[1])
+       vob_name= li[2]
+       dds_name= li[3]
+       extend=   li[4].upper()
+       orient=   li[5].upper()
+       if extend == "SINGLE":
+           extend=False
+       else:
+            extend=True       
+       slots = [ int(j) for j in li[6:] ]
+       #print li
+       gl= vob.get_obj_names()  
+       if not(vob_name in gl):
+          msg("PART %s NOT FOUND "%(vob_name) )
+          raise NameError
+       oid= gl.index( vob_name )
+       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1}
+       if not(orient in dc.keys()):
+          msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
+          msg("SIDE receive: %s"%(orient ))
+       x1,x2,y1,y2 = vob.get_axis_limits( vob_name ,[0,1,2,3,4,5,6,7,8,9] ,dc[orient.upper()] )
+       #print "->",x1,x2,y1,y2 
+       if extend and dc[orient.upper()] != 3:
+          x2 = max( abs(x1),(x2) )
+          x1 = -x2          
+       mti, nada,nada2 = vob.get_mat_info()
+       mat_name =  vob_name +"@"
+       if not(mat_name in nada2):
+          vob.add_material(   mat_name)       
+ 
+       vob.set_obj_material(oid,mat_name)
+       #print "AFTER ->",x1,x2,y1,y2 
+       if dc[orient.upper()] == 1:
+          px1=x2
+          px2=x1
+       else:
+          px1=x1
+          px2=x2 
        vob.set_material_bb(  mat_name, x1,x2,y1,y2)
        tid = vob.get_obj_texid( vob_name )              
        tf,ti,mt= vob.get_mat_pos()
@@ -633,7 +696,7 @@ def process( file_command, file_input  ):
        
        #vob.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 )
         
-    if cmd=="SET_TEXTURE_SLOT":
+    if cmd=="SET_TEXTURE_SLOT3":
        vob_name= li[1]
        sp1=0
        vob_names =[]
@@ -681,7 +744,7 @@ def process( file_command, file_input  ):
           raise NameError
         
  
-       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1,"UNDER":6}
+       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1}
        if not(orient in dc.keys()):
           msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
           msg("SIDE receive: %s"%(orient ))
@@ -738,111 +801,7 @@ def process( file_command, file_input  ):
        
        #vob.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 ) 
 	   
-    if cmd=="SET_TEXTURE_SLOT2":
-       sp1= int(li[1])
-       vob_name= li[2]
 
-       vob_names =[]
-       gl= vob.get_obj_names()
-
-       sj = 1
-
-       print li
-
-
-       #find extend or single
-
-       valid= False  
-       for sk in range(len(li)):
-           if li[sk].upper() == "EXTEND" or li[sk].upper() == "SINGLE":
-              sj=sk+0
-              valid=True             
-
-       vob_names =   li[2:sj-1 ]        
-
-       msg("Found "+" ".join(vob_names) )        
-       
-       dds_name= li[sj-1]
-       orient=   li[sj+1].upper()
-       extend=   li[sj].upper()
-
-       #print "SJ=", sj
-       #print "DDS_NAME:",dds_name
-       #print li
-       
-       if extend == "SINGLE":
-           extend=False
-       else:
-            extend= True
-            
-       slots = [ int(j) for j in li[sj+2:] ]
-       #print li
-       gl= vob.get_obj_names()  
-       if not(vob_name in gl):
-          msg("PART %s NOT FOUND "%(vob_name) )
-          raise NameError
-
-       if vob_names ==[]:
-          msg("No parts found")
-          raise NameError
-        
- 
-       dc= {"LSIDE":4,"SIDE":3,"TOP":5,"BACK":2,"FRONT":1,"UNDER":6}
-       if not(orient in dc.keys()):
-          msg("SET_TEXTURE_SLOT accep only side,top,back,front planes")
-          msg("SIDE receive: %s"%(orient ))
-          
-       x1,x2,y1,y2 = vob.get_axis_limits( vob_names[0] ,[0,1,2,3,4,5,6,7,8,9] ,dc[orient.upper()] )
-       for vn in  vob_names:
-           px1,px2,py1,py2 = vob.get_axis_limits( vn ,[0,1,2,3,4,5,6,7,8,9] ,dc[orient.upper()] )
-           x1= min(x1,px1)
-           y1= min(y1,py1)           
-           x2= max(x2,px2)
-           y2= max(y2,py2)
-           
-       #print "->",x1,x2,y1,y2 
-       if extend and dc[orient.upper()] != 3:
-          x2 = max( abs(x1),(x2) )
-          x1 = -x2          
-       mti,nada,nada2 = vob.get_mat_info()
-       for vn in  vob_names:
-         oid= gl.index( vn)
-         tid = vob.get_obj_texid( vn )
-         tf,ti,mt= vob.get_mat_pos()
-         vi = ti[0] + tid * 24
-         shin= vob.data[vi+16 ]+0  #save
-         
-         mat_name =  vn +"@"
-         if not(mat_name in nada2):
-            vob.add_material(   mat_name)       
- 
-         vob.set_obj_material(oid,mat_name)
-         #print "AFTER ->",x1,x2,y1,y2 
-         vob.set_material_bb(  mat_name, x1,x2,y1,y2)
-         tid = vob.get_obj_texid( vn )              
-         tf,ti,mt= vob.get_mat_pos()
-         vi = ti[0] + tid * 24
-         #shin= vob.data[vi+16 ]+0
-
-        
-         tex_mirror= True 
-         if dc == 3 : tex_mirror=False
-         u,v,du,dv = blackwood.calc_slot( [ int( ki) for ki in slots  ]   )
-         #mode tex_id  2 by default
-         v= 64 - (v + dv)
-         #x1,x2,y1,y2,du,dv = blackwood.fit_area(x1,x2,y1,y2,du,dv,two_side= tex_mirror , ratio =True )
-       
-         tex_file_id= vob.add_texture_file( dds_name  )       
-         tex_id   = vob.set_tex_id(  sp1, vn+"@" , shin  ,  tex_file_id,  u,v,du,dv , orie=0 )        
-         vob.set_material(  mat_name ,  dc[orient.upper()] , vn+"@"   )
-
-         tid = vob.get_obj_texid( vn )
-         tf,ti,mt= vob.get_mat_pos()
-         vi = ti[0] + tid * 24
-         vob.data[vi+16 ]=shin+0
-
-       
-       #vob.set_tex_id( 'Left',  2, 0, 0,0,du,dv,2 ) 
 
 
     if cmd=="NEW_OBJECT":
