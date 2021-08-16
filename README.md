@@ -294,3 +294,5 @@ Please ⭐️ this repository if this project helped you!</br>
   <img src="https://i.imgur.com/9tOq2a6.png" width="200">
 </a>
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/podfolio)
+
