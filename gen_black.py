@@ -607,7 +607,7 @@ def process( file_command, file_input  ):
  
        vob.set_obj_material(oid,mat_name)
        #print "AFTER ->",x1,x2,y1,y2 
-       if dc[orient.upper()] == 1:
+       if dc[orient.upper()] == 1 and extend == "SINGLE":
           px1=x2
           px2=x1
        else:
@@ -668,7 +668,7 @@ def process( file_command, file_input  ):
  
        vob.set_obj_material(oid,mat_name)
        #print "AFTER ->",x1,x2,y1,y2 
-       if dc[orient.upper()] == 1:
+       if dc[orient.upper()] == 1 and extend == "SINGLE":
           px1=x2
           px2=x1
        else:
