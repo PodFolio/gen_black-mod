@@ -33,6 +33,7 @@ It can be used with __[GenBlack Multicore 2020 DLC](https://github.com/PodFolio/
         <li><a href="#set_bb">SET_BB</a></li>
         <li><a href="#scale_texture">SCALE_TEXTURE</a></li>
         <li><a href="#move_texture">MOVE_TEXTURE</a></li>
+        <li><a href="#front_texture_fix">FRONT_TEXTURE_FIX</a></li>
       </ul>
     </li>
     <li>
@@ -245,6 +246,18 @@ MOVE_TEXTURE <part_name> <left/right> <up/down>
 example:</br>
 ```
 MOVE_TEXTURE M1_side 1.5 1.2
+```
+
+### FRONT_TEXTURE_FIX
+simple front texture fix fix</br>
+
+```
+FRONT_TEXTURE_FIX <part_name>
+```
+
+example:</br>
+```
+FRONT_TEXTURE_FIX plate_Front
 ```
 
 
