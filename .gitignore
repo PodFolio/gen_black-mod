@@ -1,0 +1,4 @@
+# Ignore all pyc files
+*.pyc
+# Except this file
+!.gitignore
