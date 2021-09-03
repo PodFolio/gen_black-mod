@@ -533,7 +533,7 @@ def process( file_command, file_input  ):
        print x1,x2, y1,y2 , " ->  ", px1,px2,py1,py2
        vob.set_material_bb(  mat_name, px1,px2,py1,py2  )
 	   
-    if cmd=="SCALE":
+    if cmd=="SCALE_TEXTURE":
        vob_name= li[1] 
        scale = float(li[2])		   
        mat_name=  vob.get_obj_material(  vob_name  )  
@@ -545,7 +545,7 @@ def process( file_command, file_input  ):
        print x1,x2, y1,y2 , " ->  ", px1,px2,py1,py2
        vob.set_material_bb(  mat_name, px1,px2,py1,py2  )
 	   
-    if cmd=="MOVE":
+    if cmd=="MOVE_TEXTURE":
        vob_name= li[1] 
        side = float(li[2])
        updown = float(li[3])		   

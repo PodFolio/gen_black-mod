@@ -273,7 +273,7 @@ added more mirror variants</br>
 `BODYOFF/BODYON/BODYFIX` adding "smooth" for body parts (like in orginal vob, i don't know if it does anything at all, using only on MESH 1)</br>
 
 ### RENDER_TEMPLATE
-now it makes transparent PNG files, just change in command .jpg to .png
+now you can choose if you want use old JPG way or new transparent PNG way! (.jpg or .png at end of filename)
 
 example:</br>
 ```

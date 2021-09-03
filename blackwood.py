@@ -1101,11 +1101,15 @@ class blk_file:
    
    def render_template(self, obj_id, model ,image_name, size=4096 ,   kside=   0):
        #lets find this file
+       jpg = ".jpg"
        
        if os.path.exists(image_name):
           img= Image.open(image_name)
-       else:
-          img= Image.new("RGBA", [size,size], (255, 255, 255, 0) )
+        else:
+           if jpg in image_name:
+              img= Image.new("RGB", [size,size] )
+           else:
+              img= Image.new("RGBA", [size,size], (255, 255, 255, 0) )
        draw= ImageDraw.Draw(img )   
        obj_name= self.get_obj_names()[obj_id]
 
@@ -1257,7 +1261,8 @@ class blk_file:
                  puv= [ get_uv( vj[u],vj[v],uflag   )   for vj in (fv1,fv2,fv3)]
                 
                  #render the poligon
-                 #draw.polygon( puv[0] + puv[1]+ puv[2],  fill=(155,155,155) )
+                 if jpg in image_name:
+                     draw.polygon( puv[0] + puv[1]+ puv[2],  fill=(155,155,155) )
                  draw.line( puv[0] + puv[1], fill=(0,0,0) ) 
                  draw.line( puv[1] + puv[2], fill=(0,0,0) )             
                  draw.line( puv[2] + puv[0], fill=(0,0,0) )
@@ -1269,12 +1274,15 @@ class blk_file:
             #repeat=True
             
        draw.line(  get_uv(x1,y1,uflag )+get_uv(x1,y2,uflag  ) , fill=(0,0,0) ) 
-       draw.line(  get_uv(x1,y2,uflag )+get_uv(x2,y2,uflag  ), fill=(0,0,0) )             
-       draw.line(  get_uv(x2,y2,uflag )+get_uv(x2,y1,uflag  )  , fill=(0,0,0) )
-       draw.line(  get_uv(x2,y1,uflag )+get_uv(x1,y1,uflag  )  , fill=(0,0,0) )
+       draw.line(  get_uv(x1,y2,uflag )+get_uv(x2,y2,uflag  ) , fill=(0,0,0) )             
+       draw.line(  get_uv(x2,y2,uflag )+get_uv(x2,y1,uflag  ) , fill=(0,0,0) )
+       draw.line(  get_uv(x2,y1,uflag )+get_uv(x1,y1,uflag  ) , fill=(0,0,0) )
        
        del draw
-       img.save(image_name, 'PNG')
+       if jpg in image_name:
+            img.save(image_name)
+       else:
+            img.save(image_name, 'PNG')
        del img
 
        
