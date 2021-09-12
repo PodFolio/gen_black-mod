@@ -1105,7 +1105,7 @@ class blk_file:
        
        if os.path.exists(image_name):
           img= Image.open(image_name)
-        else:
+       else:
            if jpg in image_name:
               img= Image.new("RGB", [size,size] )
            else:
