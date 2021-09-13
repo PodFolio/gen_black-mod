@@ -543,7 +543,7 @@ class blk_file:
            
            so.append( "v  %f %f %f \n"%(x,y,z ) )
            
-       for name in  self.get_obj_names2():
+       for name in  self.get_obj_names():
            for model in range(0,9):
                fl= self.get_face_list( name, [model+0] )
                
