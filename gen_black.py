@@ -552,17 +552,17 @@ def process( file_command, file_input  ):
        mat_name=  vob.get_obj_material(  vob_name  )  
        x1,x2, y1,y2= vob.get_material_bb(mat_name)
        if side < 0:
-          px1 = x1 + side
-          px2 = x2 + side
+          px1 = (x1) + (side)
+          px2 = (x2) + (side)
        else:
-          px1 = x1 - side
-          px2 = x2 - side          
+          px1 = (x1) - (side)
+          px2 = (x2) - (side)         
        if updown < 0:
-          py1 = y1 + updown
-          py2 = y2 + updown
+          py1 = (y1) + (updown)
+          py2 = (y2) + (updown)
        else:
-          py1 = y1 - updown
-          py2 = y2 - updown
+          py1 = (y1) - (updown)
+          py2 = (y2) - (updown)
        print x1,x2, y1,y2 , " ->  ", px1,px2,py1,py2
        vob.set_material_bb(  mat_name, px1,px2,py1,py2  )      
         
